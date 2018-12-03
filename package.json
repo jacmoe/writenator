@@ -1,7 +1,13 @@
 {
+<<<<<<< HEAD
   "name": "writenator",
   "version": "0.1.1",
   "description": "Writenator",
+=======
+  "name": "pype",
+  "version": "0.4.1",
+  "description": "Personal Yii Page Engine",
+>>>>>>> c664a533c6fdbe8857481c1bb54cc22473f025f7
   "license": "MIT",
   "main": "gulpfile.js",
   "scripts": {
@@ -10,10 +16,17 @@
   },
   "repository": {
     "type": "git",
+<<<<<<< HEAD
     "url": "https://github.com/jacmoe/writenator.git"
   },
   "author": "Jacob Moen",
   "homepage": "https://jacmoes.wordpress.com/",
+=======
+    "url": "https://github.com/jacmoe/pype.git"
+  },
+  "author": "Jacob Moen",
+  "homepage": "https://jacmoe.dk",
+>>>>>>> c664a533c6fdbe8857481c1bb54cc22473f025f7
   "devDependencies": {
     "gulp": "^4.0.0",
     "gulp-autoprefixer": "^3.1.0",

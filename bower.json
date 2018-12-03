@@ -1,12 +1,21 @@
 {
+<<<<<<< HEAD
   "name": "writenator",
   "description": "Writenator",
+=======
+  "name": "jacmoe",
+  "description": "Jacmoes Cyber Soapbox",
+>>>>>>> c664a533c6fdbe8857481c1bb54cc22473f025f7
   "main": "Gulpfile.js",
   "authors": [
     "Jacob Moen"
   ],
   "license": "MIT",
+<<<<<<< HEAD
   "homepage": "https://github.com/jacmoe/writenator",
+=======
+  "homepage": "https://github.com/jacmoe/jacmoes",
+>>>>>>> c664a533c6fdbe8857481c1bb54cc22473f025f7
   "moduleType": [],
   "private": true,
   "ignore": [
