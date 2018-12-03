@@ -1,0 +1,65 @@
+@charset 'utf-8';
+
+@import "m-grid";
+@import "m-components";
+@import "m-dark";
+
+@import "railscasts";
+@import "font-awesome";
+
+@import "lightbox";
+
+@import "semanticdiv";
+
+a.rss-link {
+    &:before {
+       font-family: FontAwesome;
+       content: "\f09e";
+    }
+  }
+
+/* Always show the scrollbar to prevent "jumping" */
+html {
+  overflow: -moz-scrollbars-vertical;
+  overflow-y: scroll;
+}
+
+%clearfix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+.clearfix {
+  @extend %clearfix;
+  margin-bottom: 1rem;
+}
+
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
+}
+
+img.left {
+  margin-right: 1rem;
+}
+
+img.right {
+  margin-left: 1rem;
+}
+
+.imagewrap img {
+  height:auto;
+}
+
+.quiet {
+  color: #6f6f6f;
+  font-style: italic;
+  //font-size: 0.8em;
+  font-size: modular-scale(-1);
+}
