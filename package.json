@@ -27,7 +27,7 @@
     "gulp-sass": "^2.1.0",
     "gulp-sourcemaps": "^1.6.0",
     "gulp-uglify": "^1.2.0",
-    "gulp.spritesmith": "^6.2.1",
+    "gulp.spritesmith": "^6.9.0",
     "js-yaml": "^3.4.6",
     "rimraf": "^2.4.3",
     "yargs": "^3.8.0"
