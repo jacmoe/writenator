@@ -49,6 +49,24 @@ $config = [
             'rules' => [
             ],
         ],
+        'assetManager' => [
+            'linkAssets' => true,
+            'appendTimestamp' => true,
+        ],
+        'view' => [
+            'class' => 'yii\web\View',
+            'defaultExtension' => 'pug',
+            'renderers' => [
+                'pug' => [
+                    'class' => 'Pug\Yii\ViewRenderer',
+                    'cachePath' => '@runtime/pug/cache',
+                    'options' => [
+                        'pretty' => true,
+                        'lifeTime' => 60,
+                    ],
+                ],
+            ],
+        ],
     ],
     'params' => $params,
 ];
