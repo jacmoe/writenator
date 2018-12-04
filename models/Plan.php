@@ -49,4 +49,9 @@ class Plan extends \yii\db\ActiveRecord
             'goal' => Yii::t('app', 'Goal'),
         ];
     }
+
+    public function getEntries()
+    {
+        return $this->hasMany(Entry::className(), ['plan_id' => 'id']);
+    }
 }
