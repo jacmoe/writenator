@@ -58,11 +58,11 @@ $config = [
             'defaultExtension' => 'pug',
             'renderers' => [
                 'pug' => [
-                    'class' => 'Pug\Yii\ViewRenderer',
+                    'class' => 'Pug\\Yii\\ViewRenderer',
                     'cachePath' => '@runtime/pug/cache',
                     'options' => [
                         'pretty' => true,
-                        'lifeTime' => 60,
+                        'lifeTime' => 3600,
                     ],
                 ],
             ],
