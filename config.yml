@@ -22,7 +22,6 @@ PATHS:
   # Paths to Sass libraries, which can then be loaded with @import
   sass:
     - "vendor/bower-asset/font-awesome/scss"
-    - "vendor/scrivo/highlight.php/styles"
   # Paths to JavaScript libraries, which are combined into one file
   javascript:
     - "vendor/bower-asset/jquery/dist/jquery.js"
