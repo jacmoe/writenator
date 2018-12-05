@@ -1,22 +1,10 @@
 @charset 'utf-8';
 
-@import "m-grid";
-@import "m-components";
-@import "m-dark";
-
-@import "railscasts";
 @import "font-awesome";
 
 @import "lightbox";
 
 @import "semanticdiv";
-
-a.rss-link {
-    &:before {
-       font-family: FontAwesome;
-       content: "\f09e";
-    }
-  }
 
 /* Always show the scrollbar to prevent "jumping" */
 html {
