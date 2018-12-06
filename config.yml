@@ -27,4 +27,3 @@ PATHS:
   javascript:
     - "vendor/bower-asset/jquery/dist/jquery.js"
     - "vendor/bower-asset/lightbox2/dist/js/lightbox.js"
-    - "assets/src/js/jquery.sticky.js"

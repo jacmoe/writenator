@@ -5,7 +5,7 @@ html(lang=Yii::$app->language)
   include partials/_head
   body
     -$view->beginBody()
-    .wrap
+    div
         include partials/_header.php
         .container
             !=Alert::widget()
