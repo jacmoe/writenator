@@ -6,9 +6,9 @@ html(lang=Yii::$app->language)
   body
     -$view->beginBody()
     .wrap
-        include partials/_header.php
+        //include partials/_header.php
         .container
-            !=Alert::widget()
+            //!=Alert::widget()
             !=$content
     include partials/_footer
     -$view->endBody()
