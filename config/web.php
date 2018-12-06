@@ -52,6 +52,11 @@ $config = [
         'assetManager' => [
             'linkAssets' => true,
             'appendTimestamp' => true,
+            'bundles' => [
+                'yii\bootstrap4\BootstrapAsset' => [
+                    'css' => [],
+                ]
+            ]
         ],
         'view' => [
             'class' => 'yii\web\View',

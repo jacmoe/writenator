@@ -3,7 +3,7 @@
         'brandLabel' => Yii::$app->name,
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
-            'class' => 'navbar-inverse navbar-fixed-top',
+        'class' => 'navbar navbar-dark bg-dark navbar-static-top navbar-frontend',
         ],
     ]);
     echo Nav::widget([
