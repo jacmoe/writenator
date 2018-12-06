@@ -53,9 +53,9 @@ $config = [
             'linkAssets' => true,
             'appendTimestamp' => true,
             'bundles' => [
-                'yii\bootstrap4\BootstrapAsset' => [
-                    'css' => [],
-                ]
+                'yii\bootstrap4\BootstrapAsset' => false,
+                'yii\bootstrap4\BootstrapPluginAsset' => false,
+                'yii\web\JqueryAsset' => false,
             ]
         ],
         'view' => [
@@ -67,7 +67,7 @@ $config = [
                     'cachePath' => '@runtime/pug/cache',
                     'options' => [
                         'pretty' => true,
-                        'lifeTime' => 3600,
+                        'lifeTime' => 0,
                     ],
                 ],
             ],
