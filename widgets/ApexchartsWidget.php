@@ -58,7 +58,7 @@ class ApexchartsWidget extends Widget
         $width = json_encode($this->width);
         $height = json_encode((string)$this->height);
 
-        echo $this->render('index', compact('id', 'chartOptions', 'series', 'xaxis', 'type', 'width', 'height'));
+        echo $this->render('chart', compact('id', 'chartOptions', 'series', 'xaxis', 'type', 'width', 'height'));
     }
 
 
