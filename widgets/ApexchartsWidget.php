@@ -23,6 +23,7 @@ class ApexchartsWidget extends Widget
     public $id = 'apexcharts-widget';
     public $chartOptions = [];
     public $series = [];
+    public $xaxis = [];
     public $type = 'line';
     public $width = '100%';
     public $height = 350;
@@ -52,11 +53,12 @@ class ApexchartsWidget extends Widget
         $id = json_encode($this->getId());
         $chartOptions = json_encode((object)$this->chartOptions);
         $series = json_encode($this->series);
+        $xaxis = json_encode($this->xaxis);
         $type = json_encode($this->type);
         $width = json_encode($this->width);
         $height = json_encode((string)$this->height);
 
-        echo $this->render('index', compact('id', 'chartOptions', 'series', 'type', 'width', 'height'));
+        echo $this->render('index', compact('id', 'chartOptions', 'series', 'xaxis', 'type', 'width', 'height'));
     }
 
 

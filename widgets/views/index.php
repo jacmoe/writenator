@@ -30,6 +30,7 @@ var options = {
   },
   chartOptions: $chartOptions,
   series: $series,
+  xaxis: $xaxis,
   width: $width,
   height: $height
 }

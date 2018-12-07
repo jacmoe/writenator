@@ -6,7 +6,7 @@ $series = [
         ],
 ];
 
-$categories = [1991,1992,1993,1994,1995,1996,1997, 1998,1999];
+$categories = [ 'type' => 'datetime', 'categories' => ['02-10-2017', '02-11-2017', '02-12-2017', '02-13-2017', '02-14-2017', '02-15-2017', '02-16-2017', '02-17-2017', '02-18-2017' ]];
 
 echo app\widgets\ApexchartsWidget::widget([
     'type' => 'line', // default area
@@ -19,10 +19,8 @@ echo app\widgets\ApexchartsWidget::widget([
                 'autoSelected' => 'zoom'
             ],
         ],
-        'xaxis' => [
-            'categories' => $categories,
-        ],
     ],
-    'series' => $series
+    'series' => $series,
+    'xaxis' => $categories
 ]);
 ?>
