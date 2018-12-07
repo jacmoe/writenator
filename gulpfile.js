@@ -37,8 +37,7 @@ function styles() {
     .pipe($.if(PRODUCTION, $.rename({ suffix: '.min' })))
     .pipe($.if(PRODUCTION, $.cssnano()))
     .pipe($.if(!PRODUCTION, $.sourcemaps.write('.', { sourceRoot: '../../assets/src/scss/' })))
-    .pipe(gulp.dest(config.PATHS.dist + '/css'))
-    .pipe($.notify({ message: 'Styles task complete' }));
+    .pipe(gulp.dest(config.PATHS.dist + '/css'));
 };
 
 // Scripts
@@ -49,8 +48,7 @@ function scripts() {
     .pipe($.if(PRODUCTION, $.rename({ suffix: '.min' })))
     .pipe($.if(PRODUCTION, $.uglify()))
     .pipe($.if(!PRODUCTION, $.sourcemaps.write('.', { sourceRoot: '../../assets/src/js/' })))
-    .pipe(gulp.dest(config.PATHS.dist + '/js'))
-    .pipe($.notify({ message: 'Scripts task complete' }));
+    .pipe(gulp.dest(config.PATHS.dist + '/js'));
 };
 
 // Copy fonts
