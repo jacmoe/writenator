@@ -32,7 +32,8 @@ var options = {
   series: $series,
   xaxis: $xaxis,
   width: $width,
-  height: $height
+  height: $height,
+  tooltip: { enabled: true }
 }
 
 var chart = new ApexCharts(document.querySelector('#'+$id), options);
