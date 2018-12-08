@@ -2,4 +2,11 @@ include partials/_index.php
 .plan-index
     h1 !=Html::encode($view->title)
     p != Html::a(Yii::t('app', 'Create Plan'), ['create'], ['class' => 'btn btn-success'])
-    include partials/_index_grid.php
+    -if(empty($plans)) {
+        !="<p class='quiet'>No plans were found</p>"
+    -}
+    -if(!empty($plans)) {
+        -foreach($plans as $plan) {
+            !=$plan->title
+        -}
+    -}

@@ -40,7 +40,7 @@ class PlanController extends Controller
         ]);
 
         return $this->render('index', [
-            'dataProvider' => $dataProvider,
+            'plans' => $dataProvider->getModels(),
         ]);
     }
 
