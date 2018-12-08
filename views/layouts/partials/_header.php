@@ -10,6 +10,7 @@
         'options' => ['class' => 'navbar-nav mr-auto'],
         'items' => [
             ['label' => 'Home', 'url' => ['/site/index']],
+            ['label' => 'Plans', 'url' => ['/plan/index']],
         ],
     ]);
     NavBar::end();
