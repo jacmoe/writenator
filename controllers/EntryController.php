@@ -3,16 +3,16 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\Plan;
+use app\models\Entry;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * PlanController implements the CRUD actions for Plan model.
+ * EntryController implements the CRUD actions for Entry model.
  */
-class PlanController extends Controller
+class EntryController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -30,13 +30,13 @@ class PlanController extends Controller
     }
 
     /**
-     * Lists all Plan models.
+     * Lists all Entry models.
      * @return mixed
      */
     public function actionIndex()
     {
         $dataProvider = new ActiveDataProvider([
-            'query' => Plan::find(),
+            'query' => Entry::find(),
         ]);
 
         return $this->render('index', [
@@ -45,7 +45,7 @@ class PlanController extends Controller
     }
 
     /**
-     * Displays a single Plan model.
+     * Displays a single Entry model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -58,13 +58,13 @@ class PlanController extends Controller
     }
 
     /**
-     * Creates a new Plan model.
+     * Creates a new Entry model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Plan();
+        $model = new Entry();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -76,7 +76,7 @@ class PlanController extends Controller
     }
 
     /**
-     * Updates an existing Plan model.
+     * Updates an existing Entry model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -96,7 +96,7 @@ class PlanController extends Controller
     }
 
     /**
-     * Deletes an existing Plan model.
+     * Deletes an existing Entry model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -110,15 +110,15 @@ class PlanController extends Controller
     }
 
     /**
-     * Finds the Plan model based on its primary key value.
+     * Finds the Entry model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Plan the loaded model
+     * @return Entry the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Plan::findOne($id)) !== null) {
+        if (($model = Entry::findOne($id)) !== null) {
             return $model;
         }
 

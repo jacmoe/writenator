@@ -1,4 +1,5 @@
 include partials/_index.php
-h1 plan/index
-p You may change the content of this page by modifying the file
-    code !=__FILE__.
+.plan-index
+    h1 !=Html::encode($view->title)
+    p != Html::a(Yii::t('app', 'Create Plan'), ['create'], ['class' => 'btn btn-success'])
+    include partials/_index_grid.php
