@@ -35,3 +35,4 @@ tests/_support/_generated
 /node_modules
 /assets/dist/
 
+.directory
