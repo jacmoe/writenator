@@ -68,6 +68,7 @@ $config = [
                     'options' => [
                         'pretty' => true,
                         'lifeTime' => 0,
+                        'expressionLanguage' => 'php',
                     ],
                 ],
             ],

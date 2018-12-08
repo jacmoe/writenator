@@ -1,4 +1,5 @@
-include partials/_index.php
+-use yii\helpers\Html;
+-$view->title = 'Plans - Writenator';
 .plan-index
     h1 !=Html::encode($view->title)
     p != Html::a(Yii::t('app', 'Create Plan'), ['create'], ['class' => 'btn btn-success'])
