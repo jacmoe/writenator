@@ -55,7 +55,6 @@ $config = [
             'bundles' => [
                 'yii\bootstrap4\BootstrapAsset' => false,
                 'yii\bootstrap4\BootstrapPluginAsset' => false,
-                'yii\web\JqueryAsset' => false,
             ]
         ],
         'view' => [

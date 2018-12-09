@@ -24,7 +24,6 @@ PATHS:
     - "vendor/bower-asset/font-awesome/scss"
   # Paths to JavaScript libraries, which are combined into one file
   javascript:
-    - "vendor/bower-asset/jquery/dist/jquery.js"
     - "vendor/bower-asset/lightbox2/dist/js/lightbox.js"
     - "vendor/bower-asset/bootstrap/dist/js/bootstrap.js"
     - "node_modules/apexcharts/dist/apexcharts.js"

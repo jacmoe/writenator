@@ -4,6 +4,9 @@ use yii\web\AssetBundle;
 class AppAsset extends AssetBundle
 {
     public $sourcePath = '@app/assets/dist';
+    public $depends = [
+        'yii\web\JqueryAsset',
+    ];
     public $css = [
         YII_ENV_DEV ? 'css/all.css' : 'css/all.min.css'
     ];
