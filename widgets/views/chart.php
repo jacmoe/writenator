@@ -31,6 +31,7 @@ var options = {
   chartOptions: $chartOptions,
   series: $series,
   xaxis: $xaxis,
+  yaxis: { max: $yaxis_max},
   width: $width,
   height: $height,
   tooltip: { enabled: true }

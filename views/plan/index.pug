@@ -7,7 +7,28 @@
         !="<p class='quiet'>No plans were found</p>"
     -}
     -if(!empty($plans)) {
+        -$data = array()
         -foreach($plans as $plan) {
             !=$plan->title
+            br
+            !=$plan->start
+            br
+            !=$plan->end
+            br
+            !=$plan->goal
+            br
+            -$datetime1 = date_create($plan->start)
+            -$datetime2 = date_create($plan->end)
+            -$interval = date_diff($datetime1, $datetime2)
+            -$daycount = $interval->format('%R%a')
+            br
+            !=$daycount + 1
+            br
+            -foreach($plan->entries as $entry) {
+                -$data[] = [$entry->date, $entry->amount]
+            -}
         -}
+        -$series = [['name' => 'words', 'data' => $data],]
+        -$xaxis = ['type' => 'datetime',]
+        -echo app\widgets\ApexchartsWidget::widget(['type' => 'line', 'height' => '400', 'width' => '500', 'series' => $series,'xaxis' => $xaxis])
     -}
