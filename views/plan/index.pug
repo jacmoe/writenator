@@ -24,11 +24,6 @@
             br
             !=$daycount + 1
             br
-            -foreach($plan->entries as $entry) {
-                -$data[] = [$entry->date, $entry->amount]
-            -}
+            -echo app\widgets\ApexchartsWidget::widget(['plan_id' => $plan->id, 'title' => $plan->title])
         -}
-        -$series = [['name' => 'words', 'data' => $data],]
-        -$xaxis = ['type' => 'datetime',]
-        -echo app\widgets\ApexchartsWidget::widget(['type' => 'line', 'height' => '400', 'width' => '500', 'series' => $series,'xaxis' => $xaxis])
     -}

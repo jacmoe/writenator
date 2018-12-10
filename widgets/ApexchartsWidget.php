@@ -7,33 +7,28 @@
 
 namespace app\widgets;
 
+use app\models\Entry;
+use Yii;
 use yii\base\InvalidConfigException;
 use yii\base\Widget;
-use yii\db\ActiveRecord;
-use yii\helpers\ArrayHelper;
-use yii\helpers\Url;
 
-/**
- *
- * @property ActiveRecord|null $model
- */
 class ApexchartsWidget extends Widget
 {
 
-    public $id = 'apexcharts-widget';
-    public $chartOptions = [];
-    public $series = [];
-    public $xaxis = [];
+    public $plan_id;
+    public $title = "untitled";
     public $yaxis_max = 50000;
-    public $type = 'line';
-    public $width = '100%';
-    public $height = 350;
+
+    private $id = 'apexcharts-widget';
+    private $series = [];
 
     public function init()
     {
         \Yii::setAlias('@apexchartsWidgetRoot', __DIR__);
 
-        parent::init();
+        if ($this->plan_id === null) {
+            throw new InvalidConfigException('plan_id should be specified.');
+        }
     }
 
     public function getViewPath()
@@ -49,18 +44,25 @@ class ApexchartsWidget extends Widget
 
     public function run()
     {
-        parent::run();
-
         $id = json_encode($this->getId());
-        $chartOptions = json_encode((object)$this->chartOptions);
-        $series = json_encode($this->series);
-        $xaxis = json_encode($this->xaxis);
-        $yaxis_max = $this->yaxis_max;
-        $type = json_encode($this->type);
-        $width = json_encode($this->width);
-        $height = json_encode((string)$this->height);
+        $title = json_encode($this->title);
 
-        echo $this->render('chart', compact('id', 'chartOptions', 'series', 'xaxis', 'yaxis_max', 'type', 'width', 'height'));
+        $entries = Entry::find()->where(['plan_id' => $this->plan_id])->all();
+
+        $data = array();
+
+        $cur_max = 0;
+        foreach($entries as $entry) {
+            $data[] = [$entry->date, $entry->amount];
+            $cur_max = ($cur_max > $entry->amount) ? $cur_max : $entry->amount;
+        }
+
+        $yaxis_max = ($cur_max <= $this->yaxis_max) ? $this->yaxis_max : $cur_max;
+
+        $this->series = [['name' => 'words', 'data' => $data]];
+        $series = json_encode($this->series);
+
+        echo $this->render('chart', compact('id', 'title', 'series', 'yaxis_max'));
     }
 
 
