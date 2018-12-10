@@ -56,6 +56,7 @@ class ApexchartsWidget extends Widget
             $data[] = [$entry->date, $entry->amount];
             $cur_max = ($cur_max > $entry->amount) ? $cur_max : $entry->amount;
         }
+        $cur_max = (($cur_max % 1000) == 0) ? $cur_max : $cur_max - ($cur_max % 1000) + 1000;
 
         $yaxis_max = ($cur_max <= $this->yaxis_max) ? $this->yaxis_max : $cur_max;
 

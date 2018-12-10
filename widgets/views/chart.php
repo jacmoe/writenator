@@ -31,7 +31,7 @@ var options = {
   title: { text: $title, style: { fontSize: '20px' }},
   series: $series,
   xaxis: {type: 'datetime'},
-  yaxis: { max: $yaxis_max, min: 0, tickAmount: 4},
+  yaxis: { max: $yaxis_max, min: 0, tickAmount: 10},
   width: '100%',
   height: '100%',
   tooltip: { enabled: true }
