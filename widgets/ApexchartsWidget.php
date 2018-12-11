@@ -56,14 +56,20 @@ class ApexchartsWidget extends Widget
             $data[] = [$entry->date, $entry->amount];
             $cur_max = ($cur_max > $entry->amount) ? $cur_max : $entry->amount;
         }
+        // make sure that cur_max is a multiple of a thousand, and if not, round up to nearest thousand
         $cur_max = (($cur_max % 1000) == 0) ? $cur_max : $cur_max - ($cur_max % 1000) + 1000;
 
-        $yaxis_max = ($cur_max <= $this->yaxis_max) ? $this->yaxis_max : $cur_max;
+        // make sure that yaxis_max is a multiple of a thousand, and if not, round up to nearest thousand
+        $yaxis_max = $this->yaxis_max;
+        $goal = $this->yaxis_max;
+        $yaxis_max = (($yaxis_max % 1000) == 0) ? $yaxis_max : $yaxis_max - ($yaxis_max % 1000) + 1000;
+
+        $yaxis_max = ($cur_max <= $yaxis_max) ? $yaxis_max : $cur_max;
 
         $this->series = [['name' => 'words', 'data' => $data]];
         $series = json_encode($this->series);
 
-        echo $this->render('chart', compact('id', 'title', 'series', 'yaxis_max'));
+        echo $this->render('chart', compact('id', 'title', 'series', 'yaxis_max', 'goal'));
     }
 
 

@@ -24,6 +24,6 @@
             br
             !=$daycount + 1
             br
-            -echo app\widgets\ApexchartsWidget::widget(['plan_id' => $plan->id, 'title' => $plan->title])
+            -echo app\widgets\ApexchartsWidget::widget(['plan_id' => $plan->id, 'title' => $plan->title, 'yaxis_max' => $plan->goal])
         -}
     -}
