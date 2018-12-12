@@ -20,11 +20,11 @@
             -$datetime1 = date_create($plan->start)
             -$datetime2 = date_create($plan->end)
             -$interval = date_diff($datetime1, $datetime2)
-            -$daycount = $interval->format('%R%a')
+            -$daycount = $interval->format('%R%a') + 1
             br
-            !=$daycount + 1
+            !=$daycount
             br
-            -echo app\widgets\ApexchartsWidgetEntries::widget(['plan_id' => $plan->id, 'title' => $plan->title, 'yaxis_max' => $plan->goal])
+            -echo app\widgets\ApexchartsWidgetEntries::widget(['plan_id' => $plan->id, 'title' => $plan->title, 'yaxis_max' => $plan->goal, 'day_count' => $daycount])
             -echo app\widgets\ApexchartsWidget::widget(['plan_id' => $plan->id, 'title' => $plan->title, 'yaxis_max' => $plan->goal])
         -}
     -}

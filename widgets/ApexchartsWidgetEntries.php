@@ -18,6 +18,7 @@ class ApexchartsWidgetEntries extends Widget
     public $plan_id;
     public $title = "untitled";
     public $yaxis_max = 1000;
+    public $day_count = 1;
 
     private $id = 'apexcharts-widget-entries';
     private $series = [];
@@ -59,17 +60,14 @@ class ApexchartsWidgetEntries extends Widget
         // make sure that cur_max is a multiple of a thousand, and if not, round up to nearest thousand
         $cur_max = (($cur_max % 1000) == 0) ? $cur_max : $cur_max - ($cur_max % 1000) + 1000;
 
-        // make sure that yaxis_max is a multiple of a thousand, and if not, round up to nearest thousand
-        $yaxis_max = $this->yaxis_max;
+        $yaxis_max = $cur_max;
         $goal = $this->yaxis_max;
-        $yaxis_max = (($yaxis_max % 1000) == 0) ? $yaxis_max : $yaxis_max - ($yaxis_max % 1000) + 1000;
-
-        $yaxis_max = ($cur_max <= $yaxis_max) ? $yaxis_max : $cur_max;
+        $day_count = $this->day_count;
 
         $this->series = [['name' => 'words', 'data' => $data]];
         $series = json_encode($this->series);
 
-        echo $this->render('entries', compact('id', 'title', 'series', 'yaxis_max', 'goal'));
+        echo $this->render('entries', compact('id', 'title', 'series', 'yaxis_max', 'goal', 'day_count'));
     }
 
 

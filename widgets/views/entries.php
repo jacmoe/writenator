@@ -22,9 +22,7 @@
 
 <?php
 
-$goal_threequarters = $goal * 0.75;
-$goal_half = $goal / 2;
-$goal_quart = $goal * 0.25;
+$daygoal = round($goal / $day_count, 0, PHP_ROUND_HALF_UP);
 
 $this->registerJs(<<<JS
 
@@ -35,51 +33,15 @@ var options = {
   annotations: {
     yaxis: [
       {
-        y: $goal,
+        y: $daygoal,
         borderColor: '#00E396',
         label: {
           borderColor: '#00E396',
           style: {
-            color: '#fff',
-            background: '#00E396'
+            color: '#00E396',
+            background: '#fff'
           },
-          text: "Goal : " + $goal
-        }
-      },
-      {
-        y: $goal_threequarters,
-        borderColor: '#00E396',
-        label: {
-          borderColor: '#00E396',
-          style: {
-            color: '#fff',
-            background: '#00E396'
-          },
-          text: "3/4"
-        }
-      },
-      {
-        y: $goal_half,
-        borderColor: '#00E396',
-        label: {
-          borderColor: '#00E396',
-          style: {
-            color: '#fff',
-            background: '#00E396'
-          },
-          text: "1/2"
-        }
-      },
-      {
-        y: $goal_quart,
-        borderColor: '#00E396',
-        label: {
-          borderColor: '#00E396',
-          style: {
-            color: '#fff',
-            background: '#00E396'
-          },
-          text: "1/4"
+          text: "Average Daily Goal : " + $daygoal
         }
       }
     ]
