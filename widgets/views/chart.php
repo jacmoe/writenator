@@ -41,9 +41,10 @@ var options = {
           borderColor: '#00E396',
           style: {
             color: '#fff',
-            background: '#00E396'
+            background: '#00E396',
+            fontSize: '16px'
           },
-          text: "Goal : " + $goal
+          text: "Goal : " + ($goal).toLocaleString('en')
         }
       },
       {
@@ -53,7 +54,8 @@ var options = {
           borderColor: '#00E396',
           style: {
             color: '#fff',
-            background: '#00E396'
+            background: '#00E396',
+            fontSize: '16px'
           },
           text: "3/4"
         }
@@ -65,7 +67,8 @@ var options = {
           borderColor: '#00E396',
           style: {
             color: '#fff',
-            background: '#00E396'
+            background: '#00E396',
+            fontSize: '16px'
           },
           text: "1/2"
         }
@@ -77,7 +80,8 @@ var options = {
           borderColor: '#00E396',
           style: {
             color: '#fff',
-            background: '#00E396'
+            background: '#00E396',
+            fontSize: '16px'
           },
           text: "1/4"
         }

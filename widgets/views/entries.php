@@ -39,9 +39,10 @@ var options = {
           borderColor: '#00E396',
           style: {
             color: '#00E396',
-            background: '#fff'
+            background: '#fff',
+            fontSize: '16px'
           },
-          text: "Average Daily Goal : " + $daygoal
+          text: "Average Daily Goal : " + ($daygoal).toLocaleString('en')
         }
       }
     ]
