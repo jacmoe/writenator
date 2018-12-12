@@ -53,12 +53,21 @@ class ApexchartsWidgetEntries extends Widget
         $data = array();
 
         $cur_max = 0;
+        $sofar = 0;
+        $sofar_days = 0;
         foreach($entries as $entry) {
-            $data[] = [$entry->date, $entry->amount];
+            if($entry->accumulated > 0) {
+                $data[] = [$entry->date, $entry->amount];
+            } else {
+                $data[] = [$entry->date, null];
+            }
+            $sofar += $entry->amount;
+            if($entry->accumulated > 0) $sofar_days++;
             $cur_max = ($cur_max > $entry->amount) ? $cur_max : $entry->amount;
         }
         // make sure that cur_max is a multiple of a thousand, and if not, round up to nearest thousand
         $cur_max = (($cur_max % 1000) == 0) ? $cur_max : $cur_max - ($cur_max % 1000) + 1000;
+
 
         $yaxis_max = $cur_max;
         $goal = $this->yaxis_max;
@@ -67,7 +76,9 @@ class ApexchartsWidgetEntries extends Widget
         $this->series = [['name' => 'words', 'data' => $data]];
         $series = json_encode($this->series);
 
-        echo $this->render('entries', compact('id', 'title', 'series', 'yaxis_max', 'goal', 'day_count'));
+        $remaining_days = $day_count - $sofar_days;
+
+        echo $this->render('entries', compact('id', 'title', 'series', 'yaxis_max', 'goal', 'day_count', 'remaining_days', 'sofar'));
     }
 
 

@@ -53,7 +53,11 @@ class ApexchartsWidget extends Widget
 
         $cur_max = 0;
         foreach($entries as $entry) {
-            $data[] = [$entry->date, $entry->accumulated];
+            if($entry->accumulated > 0) {
+                $data[] = [$entry->date, $entry->accumulated];
+            } else {
+                $data[] = [$entry->date, null];
+            }
             $cur_max = ($cur_max > $entry->accumulated) ? $cur_max : $entry->accumulated;
         }
         // make sure that cur_max is a multiple of a thousand, and if not, round up to nearest thousand

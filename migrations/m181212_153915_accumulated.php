@@ -10,7 +10,7 @@ class m181212_153915_accumulated extends Migration
     // Use up()/down() to run migration code without a transaction.
     public function up()
     {
-        $this->addColumn('entry', 'accumulated', $this->integer());
+        $this->addColumn('entry', 'accumulated', $this->integer()->defaultValue(0));
     }
 
     public function down()

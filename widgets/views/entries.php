@@ -23,6 +23,7 @@
 <?php
 
 $daygoal = round($goal / $day_count, 0, PHP_ROUND_HALF_UP);
+$adjustedgoal = round(($goal - $sofar) / $remaining_days, 0, PHP_ROUND_HALF_UP);
 
 $this->registerJs(<<<JS
 
@@ -43,6 +44,19 @@ var options = {
             fontSize: '16px'
           },
           text: "Average Daily Goal : " + ($daygoal).toLocaleString('en')
+        }
+      },
+      {
+        y: $adjustedgoal,
+        borderColor: '#FEB019',
+        label: {
+          borderColor: '#FEB019',
+          style: {
+            color: '#FEB019',
+            background: '#fff',
+            fontSize: '16px'
+          },
+          text: "Adjusted Daily Goal : " + ($adjustedgoal).toLocaleString('en')
         }
       }
     ]

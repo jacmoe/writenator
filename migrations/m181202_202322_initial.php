@@ -22,8 +22,8 @@ class m181202_202322_initial extends Migration
             'id' => $this->primaryKey(),
             'plan_id' => $this->integer(),
             'date' => $this->dateTime()->notNull(),
-            'amount' => $this->integer()->notNull(),
-            'accumulate' => $this->boolean()->notNull(),
+            'amount' => $this->integer()->notNull()->defaultValue(1),
+            'accumulate' => $this->boolean()->notNull()->defaultValue(1),
         ]);
 
         $this->createIndex(
