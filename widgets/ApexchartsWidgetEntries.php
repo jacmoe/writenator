@@ -12,14 +12,14 @@ use Yii;
 use yii\base\InvalidConfigException;
 use yii\base\Widget;
 
-class ApexchartsWidget extends Widget
+class ApexchartsWidgetEntries extends Widget
 {
 
     public $plan_id;
     public $title = "untitled";
-    public $yaxis_max = 50000;
+    public $yaxis_max = 1000;
 
-    private $id = 'apexcharts-widget';
+    private $id = 'apexcharts-widget-entries';
     private $series = [];
 
     public function init()
@@ -53,8 +53,8 @@ class ApexchartsWidget extends Widget
 
         $cur_max = 0;
         foreach($entries as $entry) {
-            $data[] = [$entry->date, $entry->accumulated];
-            $cur_max = ($cur_max > $entry->accumulated) ? $cur_max : $entry->accumulated;
+            $data[] = [$entry->date, $entry->amount];
+            $cur_max = ($cur_max > $entry->amount) ? $cur_max : $entry->amount;
         }
         // make sure that cur_max is a multiple of a thousand, and if not, round up to nearest thousand
         $cur_max = (($cur_max % 1000) == 0) ? $cur_max : $cur_max - ($cur_max % 1000) + 1000;
@@ -69,7 +69,7 @@ class ApexchartsWidget extends Widget
         $this->series = [['name' => 'words', 'data' => $data]];
         $series = json_encode($this->series);
 
-        echo $this->render('chart', compact('id', 'title', 'series', 'yaxis_max', 'goal'));
+        echo $this->render('entries', compact('id', 'title', 'series', 'yaxis_max', 'goal'));
     }
 
 
