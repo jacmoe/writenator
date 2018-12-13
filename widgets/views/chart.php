@@ -31,6 +31,9 @@ $this->registerJs(<<<JS
 var options = {
   chart: {
     type: 'line',
+    animations: {
+      enabled: false
+    },
     toolbar: {
       tools: {
         zoom : false,

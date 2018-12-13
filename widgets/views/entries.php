@@ -29,6 +29,9 @@ $this->registerJs(<<<JS
 var options = {
   chart: {
     type: 'line',
+    animations: {
+      enabled: false
+    },
     toolbar: {
       tools: {
         zoom : false,
@@ -41,25 +44,13 @@ var options = {
   },
   stroke: {
     width: 3,
+    curve: 'smooth'
   },
   markers: {
     size: 3,
   },
   annotations: {
     yaxis: [
-      {
-        y: $daygoal,
-        borderColor: '#00E396',
-        label: {
-          borderColor: '#00E396',
-          style: {
-            color: '#00E396',
-            background: '#fff',
-            fontSize: '16px'
-          },
-          text: "Average Daily Goal : " + ($daygoal).toLocaleString('en')
-        }
-      },
       {
         y: $adjustedgoal,
         borderColor: '#FEB019',
@@ -71,6 +62,19 @@ var options = {
             fontSize: '16px'
           },
           text: "Adjusted Daily Goal : " + ($adjustedgoal).toLocaleString('en')
+        }
+      },
+      {
+        y: $daygoal,
+        borderColor: '#00E396',
+        label: {
+          borderColor: '#00E396',
+          style: {
+            color: '#00E396',
+            background: '#fff',
+            fontSize: '16px'
+          },
+          text: "Average Daily Goal : " + ($daygoal).toLocaleString('en')
         }
       }
     ]
