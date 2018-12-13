@@ -106,10 +106,17 @@ var options = {
       }
     ]
   },
-  title: { text: $title, style: { fontSize: '20px' }},
+  title: { text: $title + ' - Overall Progress', style: { fontSize: '20px' }},
   series: $series,
   xaxis: {type: 'datetime'},
-  yaxis: { max: $yaxis_max, min: 0, tickAmount: 10},
+  yaxis: {
+    max: $yaxis_max,
+    min: 0,
+    tickAmount: 8,
+    labels: {
+      formatter: (value) => { return (value).toLocaleString('en') },
+    }
+  },
   width: '100%',
   height: '100%',
   tooltip: { enabled: true }
