@@ -2,8 +2,9 @@
 
 namespace app\controllers;
 
-use Yii;
 use app\models\Plan;
+use app\models\Entry;
+use Yii;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -53,7 +54,7 @@ class PlanController extends Controller
     public function actionView($id)
     {
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'plan' => $this->findModel($id),
         ]);
     }
 
@@ -66,8 +67,26 @@ class PlanController extends Controller
     {
         $model = new Plan();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())) {
+            $datetime1 = date_create($_POST['start']);
+            $datetime2 = date_create($_POST['end']);
+            $interval = date_diff($datetime1, $datetime2);
+            $daycount = $interval->format('%R%a') + 1;
+            $model->daycount = $daycount;
+            $model->start = $_POST['start'];
+            $model->end = $_POST['end'];
+            $date = date("d-M-Y", strtotime($model->start));
+             if($model->save()) {
+                for ($i=0; $i < $model->daycount; $i++) { 
+                    $entry = new Entry();
+                    $entry->plan_id = $model->id;
+                    $entry->date =  $date;
+                    $date = date("d-M-Y", strtotime($date . ' + 1 days'));
+                    $entry->amount = 0;
+                    $entry->save();
+                }
+                return $this->redirect(['view', 'id' => $model->id]);
+             }
         }
 
         return $this->render('create', [
@@ -91,7 +110,7 @@ class PlanController extends Controller
         }
 
         return $this->render('update', [
-            'model' => $model,
+            'plan' => $model,
         ]);
     }
 

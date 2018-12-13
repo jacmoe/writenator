@@ -16,6 +16,7 @@ class m181202_202322_initial extends Migration
             'start' => $this->dateTime()->notNull(),
             'end' => $this->dateTime()->notNull(),
             'goal' => $this->integer()->notNull(),
+            'daycount' => $this->integer()->notNull(),
         ]);
 
         $this->createTable('entry', [
@@ -23,7 +24,7 @@ class m181202_202322_initial extends Migration
             'plan_id' => $this->integer(),
             'date' => $this->dateTime()->notNull(),
             'amount' => $this->integer()->notNull()->defaultValue(1),
-            'accumulate' => $this->boolean()->notNull()->defaultValue(1),
+            'entered' => $this->integer()->defaultValue(0),
         ]);
 
         $this->createIndex(

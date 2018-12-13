@@ -1,13 +1,11 @@
 -use yii\helpers\Html;
--$view->title = 'View plan - Writenator';
-.plan-view
+-$view->title = 'Plan ' . $plan->title . ' - Writenator';
+.plan-index
     h1 !=Html::encode($view->title)
+    .row
+        .col
+            -echo app\widgets\ApexchartsWidgetEntries::widget(['plan_id' => $plan->id, 'title' => $plan->title, 'yaxis_max' => $plan->goal, 'day_count' => $plan->daycount])
+        .col
+            -echo app\widgets\ApexchartsWidget::widget(['plan_id' => $plan->id, 'title' => $plan->title, 'yaxis_max' => $plan->goal])
+    p != Html::a(Yii::t('app', 'Update Plan'), ['update', 'id' => $plan->id], ['class' => 'btn btn-success'])
     p != Html::a(Yii::t('app', 'Create Plan'), ['create'], ['class' => 'btn btn-success'])
-    -if(empty($plans)) {
-        !="<p class='quiet'>No plans were found</p>"
-    -}
-    -if(!empty($plans)) {
-        -foreach($plans as $plan) {
-            !=$plan->title
-        -}
-    -}

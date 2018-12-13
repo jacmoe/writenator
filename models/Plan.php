@@ -29,9 +29,10 @@ class Plan extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['title', 'start', 'end', 'goal'], 'required'],
-            [['start', 'end'], 'safe'],
+            [['title', 'start', 'end', 'goal', 'daycount'], 'required'],
+            [['start', 'end', 'daycount'], 'safe'],
             [['goal'], 'integer'],
+            [['daycount'], 'integer'],
             [['title'], 'string', 'max' => 255],
         ];
     }

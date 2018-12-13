@@ -23,7 +23,6 @@
 <?php
 
 $daygoal = round($goal / $day_count, 0, PHP_ROUND_HALF_UP);
-$adjustedgoal = round(($goal - $sofar) / $remaining_days, 0, PHP_ROUND_HALF_UP);
 
 $this->registerJs(<<<JS
 

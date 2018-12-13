@@ -2,29 +2,16 @@
 -$view->title = 'Plans - Writenator';
 .plan-index
     h1 !=Html::encode($view->title)
-    p != Html::a(Yii::t('app', 'Create Plan'), ['create'], ['class' => 'btn btn-success'])
-    -if(empty($plans)) {
-        !="<p class='quiet'>No plans were found</p>"
-    -}
-    -if(!empty($plans)) {
-        -$data = array()
-        -foreach($plans as $plan) {
-            !=$plan->title
-            br
-            !=$plan->start
-            br
-            !=$plan->end
-            br
-            !=$plan->goal
-            br
-            -$datetime1 = date_create($plan->start)
-            -$datetime2 = date_create($plan->end)
-            -$interval = date_diff($datetime1, $datetime2)
-            -$daycount = $interval->format('%R%a') + 1
-            br
-            !=$daycount
-            br
-            -echo app\widgets\ApexchartsWidgetEntries::widget(['plan_id' => $plan->id, 'title' => $plan->title, 'yaxis_max' => $plan->goal, 'day_count' => $daycount])
-            -echo app\widgets\ApexchartsWidget::widget(['plan_id' => $plan->id, 'title' => $plan->title, 'yaxis_max' => $plan->goal])
-        -}
-    -}
+    .row
+        .col
+            p != Html::a(Yii::t('app', 'Create Plan'), ['create'], ['class' => 'btn btn-success'])
+        .col
+            -if(empty($plans)) {
+                !="<p class='quiet'>No plans were found</p>"
+            -}
+            -if(!empty($plans)) {
+                -$data = array()
+                -foreach($plans as $plan) {
+                    -echo app\widgets\ApexchartsWidget::widget(['plan_id' => $plan->id, 'title' => $plan->title, 'yaxis_max' => $plan->goal])
+                -}
+            -}
