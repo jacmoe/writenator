@@ -7,7 +7,7 @@ html(lang=Yii::$app->language)
     -$view->beginBody()
     div
         include partials/_header.php
-        main.container
+        main.container-fluid
             !=Alert::widget()
             !=$content
     include partials/_footer

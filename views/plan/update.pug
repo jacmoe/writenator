@@ -1,6 +1,6 @@
 -use yii\helpers\Html;
 -$view->title = 'Update plan - Writenator';
-.plan-update
+.plan-update.container
     h1 !=Html::encode($view->title)
     p != Html::a(Yii::t('app', 'Create Plan'), ['create'], ['class' => 'btn btn-success'])
     -if(empty($plans)) {

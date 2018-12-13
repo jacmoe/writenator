@@ -11,6 +11,7 @@
         'items' => [
             ['label' => 'Home', 'url' => ['/site/index']],
             ['label' => 'Plans', 'url' => ['/plan/index']],
+            ['label' => 'Corkboard', 'url' => ['/corkboard/index']],
         ],
     ]);
     NavBar::end();
