@@ -28,7 +28,22 @@ $this->registerJs(<<<JS
 
 var options = {
   chart: {
-    type: 'line'
+    type: 'line',
+    toolbar: {
+      tools: {
+        zoom : false,
+        zoomin: false,
+        zoomout: false,
+        pan: false,
+        reset: false
+      }
+    }
+  },
+  stroke: {
+    width: 3,
+  },
+  markers: {
+    size: 3,
   },
   annotations: {
     yaxis: [
