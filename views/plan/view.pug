@@ -7,5 +7,6 @@
             -echo app\widgets\ApexchartsWidget::widget(['plan_id' => $plan->id, 'title' => $plan->title, 'yaxis_max' => $plan->goal])
         .col
             -echo app\widgets\ApexchartsWidgetEntries::widget(['plan_id' => $plan->id, 'title' => $plan->title, 'yaxis_max' => $plan->goal, 'day_count' => $plan->daycount])
+    hr
     p != Html::a(Yii::t('app', 'Update Plan'), ['update', 'id' => $plan->id], ['class' => 'btn btn-success'])
     p != Html::a(Yii::t('app', 'Create Plan'), ['create'], ['class' => 'btn btn-success'])

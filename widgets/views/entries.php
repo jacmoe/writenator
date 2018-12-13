@@ -19,6 +19,10 @@
 <div id="<?= json_decode($id) ?>" class="apexcharts-container">
     <widget-apexcharts :width="width" :height="height" :type="type" :chart-options="chartOptions" :series="series"></widget-apexcharts>
 </div>
+<div style="padding-left: 30px">
+    <div class="font-weight-light" style="font-size: 12px"><span style="background-color: #00E396">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> Target Quota for each day.</div>
+    <div class="font-weight-light" style="font-size: 12px"><span style="background-color: #FEB019">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> Adjusted Target Quota based on current progress.</div>
+</div>
 
 <?php
 
@@ -54,14 +58,15 @@ var options = {
       {
         y: $adjustedgoal,
         borderColor: '#FEB019',
+        strokeDashArray: 0,
         label: {
           borderColor: '#FEB019',
           style: {
             color: '#FEB019',
             background: '#fff',
-            fontSize: '16px'
+            fontSize: '14px'
           },
-          text: "Adjusted Daily Goal : " + ($adjustedgoal).toLocaleString('en')
+          text: ($adjustedgoal).toLocaleString('en')
         }
       },
       {
@@ -72,9 +77,9 @@ var options = {
           style: {
             color: '#00E396',
             background: '#fff',
-            fontSize: '16px'
+            fontSize: '14px'
           },
-          text: "Average Daily Goal : " + ($daygoal).toLocaleString('en')
+          text: ($daygoal).toLocaleString('en')
         }
       }
     ]
@@ -85,7 +90,7 @@ var options = {
   yaxis: {
     max: $yaxis_max,
     min: 0,
-    tickAmount: 8,
+    tickAmount: 4,
     labels: {
       formatter: (value) => { return (value).toLocaleString('en') },
     }

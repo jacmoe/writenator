@@ -14,10 +14,16 @@
 /** @var $height string */
 /** @var $timeout integer */
 
+$progress = $accumulated / $goal * 100;
 ?>
 
 <div id="<?= json_decode($id) ?>" class="apexcharts-container">
     <widget-apexcharts :width="width" :height="height" :type="type" :chart-options="chartOptions" :series="series"></widget-apexcharts>
+</div>
+<div style="padding-left: 60px; padding-right: 60px">
+    <div class="progress">
+        <div class="progress-bar bg-success" role="progressbar" style="width: <?= $progress ?>%" aria-valuenow="<?= $progress ?>" aria-valuemin="0" aria-valuemax="100"><?= $progress ?>%</div>
+    </div>
 </div>
 
 <?php
@@ -55,12 +61,13 @@ var options = {
       {
         y: $goal,
         borderColor: '#00E396',
+        strokeDashArray: 0,
         label: {
           borderColor: '#00E396',
           style: {
             color: '#fff',
             background: '#00E396',
-            fontSize: '16px'
+            fontSize: '14px'
           },
           text: "Goal : " + ($goal).toLocaleString('en')
         }
@@ -73,7 +80,7 @@ var options = {
           style: {
             color: '#fff',
             background: '#00E396',
-            fontSize: '16px'
+            fontSize: '14px'
           },
           text: "3/4"
         }
@@ -81,12 +88,13 @@ var options = {
       {
         y: $goal_half,
         borderColor: '#00E396',
+        strokeDashArray: 8,
         label: {
           borderColor: '#00E396',
           style: {
             color: '#fff',
             background: '#00E396',
-            fontSize: '16px'
+            fontSize: '14px'
           },
           text: "1/2"
         }
@@ -99,7 +107,7 @@ var options = {
           style: {
             color: '#fff',
             background: '#00E396',
-            fontSize: '16px'
+            fontSize: '14px'
           },
           text: "1/4"
         }

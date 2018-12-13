@@ -82,7 +82,7 @@ class ApexchartsWidgetEntries extends Widget
             $yaxis_max = $tadjustedgoal;
         }
 
-        $this->series = [['name' => 'words', 'data' => $data]];
+        $this->series = [['name' => 'Words', 'data' => $data]];
         $series = json_encode($this->series);
 
 
