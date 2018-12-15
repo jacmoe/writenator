@@ -4,7 +4,7 @@
     h1 !=Html::encode($view->title)
     .row
         .col
-            -echo app\widgets\ApexchartsWidget::widget(['plan_id' => $plan->id, 'yaxis_max' => $plan->goal])
+            -echo app\widgets\ApexchartsWidget::widget(['plan_id' => $plan->id, 'yaxis_max' => $plan->goal, 'day_count' => $plan->daycount, 'start' => $plan->start, 'end' => $plan->end])
         .col
             -echo app\widgets\ApexchartsWidgetEntries::widget(['plan_id' => $plan->id, 'yaxis_max' => $plan->goal, 'day_count' => $plan->daycount])
     hr

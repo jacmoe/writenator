@@ -16,6 +16,9 @@ class ApexchartsWidget extends Widget
 {
 
     public $plan_id;
+    public $day_count;
+    public $start;
+    public $end;
     public $yaxis_max = 50000;
 
     private $id = 'apexcharts-widget';
@@ -73,7 +76,14 @@ class ApexchartsWidget extends Widget
         $this->series = [['name' => 'Words', 'data' => $data]];
         $series = json_encode($this->series);
 
-        echo $this->render('chart', compact('id', 'series', 'yaxis_max', 'goal', 'accumulated'));
+        $day_count = $this->day_count;
+        $start = $this->start;
+        $end = $this->end;
+
+        $words_left = $goal - $accumulated;
+        if($words_left < 0) $words_left = 0;
+
+        echo $this->render('chart', compact('id', 'series', 'yaxis_max', 'goal', 'accumulated', 'day_count', 'start', 'end', 'accumulated', 'words_left'));
     }
 
 
