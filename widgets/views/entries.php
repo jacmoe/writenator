@@ -21,8 +21,8 @@ $daygoal = round($goal / $day_count, 0, PHP_ROUND_HALF_UP);
     <widget-apexcharts :width="width" :height="height" :type="type" :chart-options="chartOptions" :series="series"></widget-apexcharts>
 </div>
 <div style="padding-left: 30px">
-    <div class="font-weight-light" style="font-size: 12px"><span style="background-color: #00E396">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> Target Quota for each day : <?= number_format($daygoal) ?></div>
-    <div class="font-weight-light" style="font-size: 12px"><span style="background-color: #FEB019">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> Adjusted Target Quota based on current progress: <?= number_format($adjustedgoal) ?></div>
+    <div class="font-weight-light" style="font-size: 12px"><span style="background-color: #00E396">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> Target Quota for each day : <?= number_format($daygoal) ?> words.</div>
+    <div class="font-weight-light" style="font-size: 12px"><span style="background-color: #FEB019">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> Adjusted Target Quota based on current progress: <?= number_format($adjustedgoal) ?> words.</div>
 </div>
 
 <?php
