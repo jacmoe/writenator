@@ -16,7 +16,6 @@ class ApexchartsWidget extends Widget
 {
 
     public $plan_id;
-    public $title = "untitled";
     public $yaxis_max = 50000;
 
     private $id = 'apexcharts-widget';
@@ -45,7 +44,6 @@ class ApexchartsWidget extends Widget
     public function run()
     {
         $id = json_encode($this->getId());
-        $title = json_encode($this->title);
 
         $entries = Entry::find()->where(['plan_id' => $this->plan_id])->all();
 
@@ -75,7 +73,7 @@ class ApexchartsWidget extends Widget
         $this->series = [['name' => 'Words', 'data' => $data]];
         $series = json_encode($this->series);
 
-        echo $this->render('chart', compact('id', 'title', 'series', 'yaxis_max', 'goal', 'accumulated'));
+        echo $this->render('chart', compact('id', 'series', 'yaxis_max', 'goal', 'accumulated'));
     }
 
 

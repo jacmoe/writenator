@@ -14,19 +14,18 @@
 /** @var $height string */
 /** @var $timeout integer */
 
+$daygoal = round($goal / $day_count, 0, PHP_ROUND_HALF_UP);
 ?>
 
 <div id="<?= json_decode($id) ?>" class="apexcharts-container">
     <widget-apexcharts :width="width" :height="height" :type="type" :chart-options="chartOptions" :series="series"></widget-apexcharts>
 </div>
 <div style="padding-left: 30px">
-    <div class="font-weight-light" style="font-size: 12px"><span style="background-color: #00E396">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> Target Quota for each day.</div>
-    <div class="font-weight-light" style="font-size: 12px"><span style="background-color: #FEB019">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> Adjusted Target Quota based on current progress.</div>
+    <div class="font-weight-light" style="font-size: 12px"><span style="background-color: #00E396">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> Target Quota for each day : <?= number_format($daygoal) ?></div>
+    <div class="font-weight-light" style="font-size: 12px"><span style="background-color: #FEB019">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> Adjusted Target Quota based on current progress: <?= number_format($adjustedgoal) ?></div>
 </div>
 
 <?php
-
-$daygoal = round($goal / $day_count, 0, PHP_ROUND_HALF_UP);
 
 $this->registerJs(<<<JS
 
@@ -59,32 +58,14 @@ var options = {
         y: $adjustedgoal,
         borderColor: '#FEB019',
         strokeDashArray: 0,
-        label: {
-          borderColor: '#FEB019',
-          style: {
-            color: '#FEB019',
-            background: '#fff',
-            fontSize: '14px'
-          },
-          text: ($adjustedgoal).toLocaleString('en')
-        }
       },
       {
         y: $daygoal,
         borderColor: '#00E396',
-        label: {
-          borderColor: '#00E396',
-          style: {
-            color: '#00E396',
-            background: '#fff',
-            fontSize: '14px'
-          },
-          text: ($daygoal).toLocaleString('en')
-        }
       }
     ]
   },
-  title: { text: $title + ' - Daily Work', style: { fontSize: '20px' }},
+  title: { text: 'Daily Work', style: { fontSize: '20px' }},
   series: $series,
   xaxis: {type: 'datetime'},
   yaxis: {

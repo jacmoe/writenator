@@ -15,6 +15,7 @@
 /** @var $timeout integer */
 
 $progress = $accumulated / $goal * 100;
+$progress = round($progress, 0, PHP_ROUND_HALF_UP);
 ?>
 
 <div id="<?= json_decode($id) ?>" class="apexcharts-container">
@@ -62,59 +63,23 @@ var options = {
         y: $goal,
         borderColor: '#00E396',
         strokeDashArray: 0,
-        label: {
-          borderColor: '#00E396',
-          style: {
-            color: '#fff',
-            background: '#00E396',
-            fontSize: '14px'
-          },
-          text: "Goal : " + ($goal).toLocaleString('en')
-        }
       },
       {
         y: $goal_threequarters,
         borderColor: '#00E396',
-        label: {
-          borderColor: '#00E396',
-          style: {
-            color: '#fff',
-            background: '#00E396',
-            fontSize: '14px'
-          },
-          text: "3/4"
-        }
       },
       {
         y: $goal_half,
         borderColor: '#00E396',
         strokeDashArray: 8,
-        label: {
-          borderColor: '#00E396',
-          style: {
-            color: '#fff',
-            background: '#00E396',
-            fontSize: '14px'
-          },
-          text: "1/2"
-        }
       },
       {
         y: $goal_quart,
         borderColor: '#00E396',
-        label: {
-          borderColor: '#00E396',
-          style: {
-            color: '#fff',
-            background: '#00E396',
-            fontSize: '14px'
-          },
-          text: "1/4"
-        }
       }
     ]
   },
-  title: { text: $title + ' - Overall Progress', style: { fontSize: '20px' }},
+  title: { text: 'Overall Progress', style: { fontSize: '20px' }},
   series: $series,
   xaxis: {type: 'datetime'},
   yaxis: {

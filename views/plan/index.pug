@@ -12,6 +12,6 @@
             -if(!empty($plans)) {
                 -$data = array()
                 -foreach($plans as $plan) {
-                    -echo app\widgets\ApexchartsWidget::widget(['plan_id' => $plan->id, 'title' => $plan->title, 'yaxis_max' => $plan->goal])
+                    -echo app\widgets\ApexchartsWidget::widget(['plan_id' => $plan->id, 'yaxis_max' => $plan->goal])
                 -}
             -}

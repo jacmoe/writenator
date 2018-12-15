@@ -46,7 +46,6 @@ class ApexchartsWidgetEntries extends Widget
     public function run()
     {
         $id = json_encode($this->getId());
-        $title = json_encode($this->title);
 
         $entries = Entry::find()->where(['plan_id' => $this->plan_id])->all();
 
@@ -73,7 +72,11 @@ class ApexchartsWidgetEntries extends Widget
 
         $day_count = $this->day_count;
         $remaining_days = $day_count - $sofar_days;
-        $adjustedgoal = round(($goal - $sofar) / $remaining_days, 0, PHP_ROUND_HALF_UP);
+        if($remaining_days < 0) {
+            $adjustedgoal = round(($goal - $sofar) / $remaining_days, 0, PHP_ROUND_HALF_UP);
+        } else {
+            $adjustedgoal = round($goal / $day_count, 0, PHP_ROUND_HALF_UP);
+        }
 
         // If adjusted goal is higher than the y axis, make it longer
         $tadjustedgoal = $adjustedgoal;
@@ -86,7 +89,7 @@ class ApexchartsWidgetEntries extends Widget
         $series = json_encode($this->series);
 
 
-        echo $this->render('entries', compact('id', 'title', 'series', 'yaxis_max', 'goal', 'day_count', 'remaining_days', 'sofar', 'adjustedgoal'));
+        echo $this->render('entries', compact('id', 'series', 'yaxis_max', 'goal', 'day_count', 'remaining_days', 'sofar', 'adjustedgoal'));
     }
 
 
