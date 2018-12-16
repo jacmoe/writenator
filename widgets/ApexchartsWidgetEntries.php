@@ -46,6 +46,7 @@ class ApexchartsWidgetEntries extends Widget
 
         $plan = Plan::findOne(['id' => $this->plan_id]);
         $yaxis_max = $plan->goal;
+        $goal = $plan->goal;
         $day_count = $plan->daycount;
         $start = $plan->start;
         $end = $plan->end;
@@ -69,13 +70,12 @@ class ApexchartsWidgetEntries extends Widget
         $cur_max = (($cur_max % 1000) == 0) ? $cur_max : $cur_max - ($cur_max % 1000) + 1000;
         
         $yaxis_max = $cur_max;
-        $goal = $yaxis_max;
 
         $remaining_days = $day_count - $sofar_days;
-        if($remaining_days < 0) {
-            $adjustedgoal = round(($goal - $sofar) / $remaining_days, 0, PHP_ROUND_HALF_UP);
+        if($remaining_days < 2) {
+            $adjustedgoal = round(($goal - $sofar), 0, PHP_ROUND_HALF_UP);
         } else {
-            $adjustedgoal = round($goal / $day_count, 0, PHP_ROUND_HALF_UP);
+            $adjustedgoal = round($goal / $day_count - 1, 0, PHP_ROUND_HALF_UP);
         }
 
         // If adjusted goal is higher than the y axis, make it longer
