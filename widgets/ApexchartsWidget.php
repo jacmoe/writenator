@@ -7,7 +7,7 @@
 
 namespace app\widgets;
 
-use app\models\Entry;
+use app\models\Plan;
 use Yii;
 use yii\base\InvalidConfigException;
 use yii\base\Widget;
@@ -16,10 +16,6 @@ class ApexchartsWidget extends Widget
 {
 
     public $plan_id;
-    public $day_count;
-    public $start;
-    public $end;
-    public $yaxis_max = 50000;
 
     private $id = 'apexcharts-widget';
     private $series = [];
@@ -48,13 +44,17 @@ class ApexchartsWidget extends Widget
     {
         $id = json_encode($this->getId());
 
-        $entries = Entry::find()->where(['plan_id' => $this->plan_id])->all();
+        $plan = Plan::findOne(['id' => $this->plan_id]);
+        $yaxis_max = $plan->goal;
+        $day_count = $plan->daycount;
+        $start = $plan->start;
+        $end = $plan->end;
 
         $data = array();
 
         $cur_max = 0;
         $accumulated = 0;
-        foreach($entries as $entry) {
+        foreach($plan->entries as $entry) {
             if($entry->entered > 0) {
                 $accumulated = $accumulated + $entry->amount;
                 $data[] = [date("m/d/Y", strtotime($entry->date)), $accumulated];
@@ -67,18 +67,13 @@ class ApexchartsWidget extends Widget
         $cur_max = (($cur_max % 1000) == 0) ? $cur_max : $cur_max - ($cur_max % 1000) + 1000;
 
         // make sure that yaxis_max is a multiple of a thousand, and if not, round up to nearest thousand
-        $yaxis_max = $this->yaxis_max;
-        $goal = $this->yaxis_max;
+        $goal = $yaxis_max;
         $yaxis_max = (($yaxis_max % 1000) == 0) ? $yaxis_max : $yaxis_max - ($yaxis_max % 1000) + 1000;
 
         $yaxis_max = ($cur_max <= $yaxis_max) ? $yaxis_max : $cur_max;
 
         $this->series = [['name' => 'Words', 'data' => $data]];
         $series = json_encode($this->series);
-
-        $day_count = $this->day_count;
-        $start = $this->start;
-        $end = $this->end;
 
         $words_left = $goal - $accumulated;
         if($words_left < 0) $words_left = 0;

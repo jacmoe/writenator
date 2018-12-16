@@ -21,7 +21,7 @@ $progress = round($progress, 0, PHP_ROUND_HALF_UP);
 <div><?= $progress ?>% complete.</div>
 <div><?= number_format($goal) ?> words over <?= $day_count ?> days.</div>
 <div>From <?= date('d/m/Y', strtotime($start)) ?> to <?= date('d/m/Y', strtotime($end)) ?></div>
-<div><?= number_format($accumulated) ?> words written. <?= $words_left ?> words left.</div>
+<div><?= number_format($accumulated) ?> words written. <?= number_format($words_left) ?> words left.</div>
 </div>
 <div id="<?= json_decode($id) ?>" class="apexcharts-container">
     <widget-apexcharts :width="width" :height="height" :type="type" :chart-options="chartOptions" :series="series"></widget-apexcharts>

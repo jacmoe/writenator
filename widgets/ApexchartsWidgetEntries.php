@@ -7,7 +7,7 @@
 
 namespace app\widgets;
 
-use app\models\Entry;
+use app\models\Plan;
 use Yii;
 use yii\base\InvalidConfigException;
 use yii\base\Widget;
@@ -16,9 +16,6 @@ class ApexchartsWidgetEntries extends Widget
 {
 
     public $plan_id;
-    public $title = "untitled";
-    public $yaxis_max = 1000;
-    public $day_count = 1;
 
     private $id = 'apexcharts-widget-entries';
     private $series = [];
@@ -47,14 +44,18 @@ class ApexchartsWidgetEntries extends Widget
     {
         $id = json_encode($this->getId());
 
-        $entries = Entry::find()->where(['plan_id' => $this->plan_id])->all();
+        $plan = Plan::findOne(['id' => $this->plan_id]);
+        $yaxis_max = $plan->goal;
+        $day_count = $plan->daycount;
+        $start = $plan->start;
+        $end = $plan->end;
 
         $data = array();
 
         $cur_max = 0;
         $sofar = 0;
         $sofar_days = 0;
-        foreach($entries as $entry) {
+        foreach($plan->entries as $entry) {
             if($entry->entered > 0) {
                 $data[] = [date("m/d/Y", strtotime($entry->date)), $entry->amount];
             } else {
@@ -68,9 +69,8 @@ class ApexchartsWidgetEntries extends Widget
         $cur_max = (($cur_max % 1000) == 0) ? $cur_max : $cur_max - ($cur_max % 1000) + 1000;
         
         $yaxis_max = $cur_max;
-        $goal = $this->yaxis_max;
+        $goal = $yaxis_max;
 
-        $day_count = $this->day_count;
         $remaining_days = $day_count - $sofar_days;
         if($remaining_days < 0) {
             $adjustedgoal = round(($goal - $sofar) / $remaining_days, 0, PHP_ROUND_HALF_UP);

@@ -1,7 +1,7 @@
 -use yii\helpers\Html;
 -$view->title = 'Plans - Writenator';
 .plan-index.container
-    h1 !=Html::encode($view->title)
+    h1 Plans
     .row
         .col
             p != Html::a(Yii::t('app', 'Create Plan'), ['create'], ['class' => 'btn btn-success'])
@@ -12,6 +12,6 @@
             -if(!empty($plans)) {
                 -$data = array()
                 -foreach($plans as $plan) {
-                    -echo app\widgets\ApexchartsWidget::widget(['plan_id' => $plan->id, 'yaxis_max' => $plan->goal, 'day_count' => $plan->daycount, 'start' => $plan->start, 'end' => $plan->end])
+                    -echo app\widgets\ApexchartsWidget::widget(['plan_id' => $plan->id])
                 -}
             -}
