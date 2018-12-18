@@ -12,6 +12,9 @@
             -if(!empty($plans)) {
                 -$data = array()
                 -foreach($plans as $plan) {
-                    -echo app\widgets\ApexchartsWidget::widget(['plan_id' => $plan->id])
+                    div !=$plan->title
+                    -echo app\widgets\ApexchartsWidget::widget(['plan_id' => $plan->id, 'render' => false])
+                    != Html::a(Yii::t('app', 'View'), ['view', 'id' => $plan->id], ['class' => 'btn btn-success btn-sm'])
+                    hr
                 -}
             -}

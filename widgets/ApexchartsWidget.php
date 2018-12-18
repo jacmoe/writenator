@@ -16,6 +16,7 @@ class ApexchartsWidget extends Widget
 {
 
     public $plan_id;
+    public $render = true;
 
     private $id = 'apexcharts-widget';
     private $series = [];
@@ -89,7 +90,9 @@ class ApexchartsWidget extends Widget
         $words_left = $goal - $accumulated;
         if($words_left < 0) $words_left = 0;
 
-        echo $this->render('chart', compact('id', 'series', 'yaxis_max', 'goal', 'accumulated', 'day_count', 'start', 'end', 'accumulated', 'words_left', 'completed'));
+        $render = $this->render;
+
+        echo $this->render('chart', compact('id', 'series', 'yaxis_max', 'goal', 'accumulated', 'day_count', 'start', 'end', 'accumulated', 'words_left', 'completed', 'render'));
     }
 
 

@@ -40,77 +40,77 @@ if($completed) {
     <widget-apexcharts :width="width" :height="height" :type="type" :chart-options="chartOptions" :series="series"></widget-apexcharts>
 </div>
 <?php
-
-$goal_threequarters = $goal * 0.75;
-$goal_half = $goal / 2;
-$goal_quart = $goal * 0.25;
-
-$this->registerJs(<<<JS
-
-var options = {
-  chart: {
-    type: 'line',
-    animations: {
-      enabled: false
+if($render) {
+  $goal_threequarters = $goal * 0.75;
+  $goal_half = $goal / 2;
+  $goal_quart = $goal * 0.25;
+  
+  $this->registerJs(<<<JS
+  
+  var options = {
+    chart: {
+      type: 'line',
+      animations: {
+        enabled: false
+      },
+      toolbar: {
+        tools: {
+          zoom : false,
+          zoomin: false,
+          zoomout: false,
+          pan: false,
+          reset: false
+        }
+      }
     },
-    toolbar: {
-      tools: {
-        zoom : false,
-        zoomin: false,
-        zoomout: false,
-        pan: false,
-        reset: false
+    stroke: {
+      width: 3,
+    },
+    markers: {
+      size: 3,
+    },
+    annotations: {
+      yaxis: [
+        {
+          y: $goal,
+          borderColor: '#00E396',
+          strokeDashArray: 0,
+        },
+        {
+          y: $goal_threequarters,
+          borderColor: '#00E396',
+        },
+        {
+          y: $goal_half,
+          borderColor: '#00E396',
+          strokeDashArray: 8,
+        },
+        {
+          y: $goal_quart,
+          borderColor: '#00E396',
+        }
+      ]
+    },
+    title: { text: 'Overall Progress', style: { fontSize: '20px' }},
+    series: $series,
+    xaxis: {type: 'datetime'},
+    yaxis: {
+      max: $yaxis_max,
+      min: 0,
+      tickAmount: 8,
+      labels: {
+        formatter: (value) => { return (value).toLocaleString('en') },
       }
-    }
-  },
-  stroke: {
-    width: 3,
-  },
-  markers: {
-    size: 3,
-  },
-  annotations: {
-    yaxis: [
-      {
-        y: $goal,
-        borderColor: '#00E396',
-        strokeDashArray: 0,
-      },
-      {
-        y: $goal_threequarters,
-        borderColor: '#00E396',
-      },
-      {
-        y: $goal_half,
-        borderColor: '#00E396',
-        strokeDashArray: 8,
-      },
-      {
-        y: $goal_quart,
-        borderColor: '#00E396',
-      }
-    ]
-  },
-  title: { text: 'Overall Progress', style: { fontSize: '20px' }},
-  series: $series,
-  xaxis: {type: 'datetime'},
-  yaxis: {
-    max: $yaxis_max,
-    min: 0,
-    tickAmount: 8,
-    labels: {
-      formatter: (value) => { return (value).toLocaleString('en') },
-    }
-  },
-  width: '100%',
-  height: '100%',
-  tooltip: { enabled: true }
-}
-
-var chart = new ApexCharts(document.querySelector('#'+$id), options);
-
-chart.render();
-
+    },
+    width: '100%',
+    height: '100%',
+    tooltip: { enabled: true }
+  }
+  
+  var chart = new ApexCharts(document.querySelector('#'+$id), options);
+  
+  chart.render();
+  
 JS
-);
-
+  );
+};
