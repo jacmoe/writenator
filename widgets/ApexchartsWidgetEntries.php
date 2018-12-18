@@ -11,6 +11,7 @@ use app\models\Plan;
 use Yii;
 use yii\base\InvalidConfigException;
 use yii\base\Widget;
+use Westsworld\TimeAgo;
 
 class ApexchartsWidgetEntries extends Widget
 {
@@ -98,11 +99,13 @@ class ApexchartsWidgetEntries extends Widget
             $yaxis_max = $tadjustedgoal;
         }
 
+        $timeAgo = new TimeAgo();
+        $time_ago = $timeAgo->inWords(date_create($end));
         $this->series = [['name' => 'Words', 'data' => $data]];
         $series = json_encode($this->series);
 
 
-        echo $this->render('entries', compact('id', 'series', 'yaxis_max', 'goal', 'day_count', 'remaining_days', 'sofar', 'adjustedgoal', 'days_left'));
+        echo $this->render('entries', compact('id', 'series', 'yaxis_max', 'goal', 'day_count', 'remaining_days', 'sofar', 'adjustedgoal', 'days_left', 'time_ago'));
     }
 
 

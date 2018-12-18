@@ -21,7 +21,7 @@ $daygoal = round($goal / $day_count, 0, PHP_ROUND_HALF_UP);
     <widget-apexcharts :width="width" :height="height" :type="type" :chart-options="chartOptions" :series="series"></widget-apexcharts>
 </div>
 <div style="padding-left: 30px">
-    <div><?= $days_left ?> days left.</div>
+    <div><?= $days_left ?> days left.<?php if($days_left <= 0) echo ' (Ended ' . $time_ago . ')'; ?></div>
     <div style="font-size: 12px"><span style="background-color: #00E396">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> Target Quota for each day : <?= number_format($daygoal) ?> words.</div>
     <div style="font-size: 12px"><span style="background-color: #FEB019">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> Adjusted Target Quota based on current progress: <?= number_format($adjustedgoal) ?> words.</div>
 </div>
