@@ -16,22 +16,26 @@
 
 $progress = $accumulated / $goal * 100;
 $progress = round($progress, 0, PHP_ROUND_HALF_UP);
+$status = "";
+if($progress >= 100) {
+  $status = "<span class='badge badge-success'>Successfully</span> completed!<hr/>";
+}
+if($completed) {
+  $status = "Completed.<hr/>";
+}
 ?>
-<div>
-<div><?= $progress ?>% complete.</div>
-<div><?= number_format($goal) ?> words over <?= $day_count ?> days.</div>
-<div>From <?= date('d/m/Y', strtotime($start)) ?> to <?= date('d/m/Y', strtotime($end)) ?></div>
-<div><?= number_format($accumulated) ?> words written. <?= number_format($words_left) ?> words left.</div>
+<?= $status ?>
+<div class="font-weight-light" style="padding-left: 60px; padding-right: 60px; font-size: 12px">
+  <div>Goal: <?= number_format($goal) ?> words over <?= $day_count ?> days.</div>
+  <div class="progress">
+    <span class="bg-warning" style="font-weight: bolder; padding-left: 5px; padding-right: 10px"><?= date('d/m/Y', strtotime($start)) ?></span> <div class="progress-bar bg-success" role="progressbar" style="width: <?= $progress ?>%" aria-valuenow="<?= $progress ?>" aria-valuemin="0" aria-valuemax="100"><?= $progress ?>%</div> <span class="bg-warning" style="font-weight: bolder; padding-left: 10px; padding-right: 5px"><?= date('d/m/Y', strtotime($end)) ?></span>
+  </div>
+  <div><?= number_format($accumulated) ?> words written. <?= number_format($words_left) ?> words left.</div>
 </div>
+<hr/>
 <div id="<?= json_decode($id) ?>" class="apexcharts-container">
     <widget-apexcharts :width="width" :height="height" :type="type" :chart-options="chartOptions" :series="series"></widget-apexcharts>
 </div>
-<div style="padding-left: 60px; padding-right: 60px">
-    <div class="progress">
-        <div class="progress-bar bg-success" role="progressbar" style="width: <?= $progress ?>%" aria-valuenow="<?= $progress ?>" aria-valuemin="0" aria-valuemax="100"><?= $progress ?>%</div>
-    </div>
-</div>
-
 <?php
 
 $goal_threequarters = $goal * 0.75;

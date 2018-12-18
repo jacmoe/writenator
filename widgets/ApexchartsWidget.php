@@ -50,6 +50,17 @@ class ApexchartsWidget extends Widget
         $start = $plan->start;
         $end = $plan->end;
 
+        $days_left = $day_count;
+        $datetime1 = date_create();
+        $datetime2 = date_create($end);
+        $interval = date_diff($datetime1, $datetime2);
+        $days_left = $interval->format('%R%a') + 1;
+
+        $completed = false;
+        if($days_left <= 0) {
+            $completed = true;
+        }
+
         $data = array();
 
         $cur_max = 0;
@@ -78,7 +89,7 @@ class ApexchartsWidget extends Widget
         $words_left = $goal - $accumulated;
         if($words_left < 0) $words_left = 0;
 
-        echo $this->render('chart', compact('id', 'series', 'yaxis_max', 'goal', 'accumulated', 'day_count', 'start', 'end', 'accumulated', 'words_left'));
+        echo $this->render('chart', compact('id', 'series', 'yaxis_max', 'goal', 'accumulated', 'day_count', 'start', 'end', 'accumulated', 'words_left', 'completed'));
     }
 
 

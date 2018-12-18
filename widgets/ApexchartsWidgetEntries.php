@@ -51,6 +51,17 @@ class ApexchartsWidgetEntries extends Widget
         $start = $plan->start;
         $end = $plan->end;
 
+        $days_left = $day_count;
+        $datetime1 = date_create();
+        $datetime2 = date_create($end);
+        $interval = date_diff($datetime1, $datetime2);
+        $days_left = $interval->format('%R%a') + 1;
+
+        $completed = false;
+        if($days_left <= 0) {
+            $completed = true;
+        }
+
         $data = array();
 
         $cur_max = 0;
@@ -89,7 +100,7 @@ class ApexchartsWidgetEntries extends Widget
         $series = json_encode($this->series);
 
 
-        echo $this->render('entries', compact('id', 'series', 'yaxis_max', 'goal', 'day_count', 'remaining_days', 'sofar', 'adjustedgoal'));
+        echo $this->render('entries', compact('id', 'series', 'yaxis_max', 'goal', 'day_count', 'remaining_days', 'sofar', 'adjustedgoal', 'days_left'));
     }
 
 
