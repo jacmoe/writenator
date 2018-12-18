@@ -1,6 +1,6 @@
 <?php
     NavBar::begin([
-        'brandLabel' => Yii::$app->name,
+        'brandLabel' => Html::img('@web/android-icon-36x36.png', ['alt' => Yii::$app->name, 'title' => Yii::$app->name]),
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
         'class' => 'navbar navbar-dark bg-dark navbar-static-top navbar-expand-lg navbar-frontend',
