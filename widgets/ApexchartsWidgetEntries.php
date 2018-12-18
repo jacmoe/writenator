@@ -60,13 +60,13 @@ class ApexchartsWidgetEntries extends Widget
         $completed = false;
         if($days_left <= 0) {
             $completed = true;
+            $days_left = 0;
         }
 
         $data = array();
 
         $cur_max = 0;
         $sofar = 0;
-        $sofar_days = 0;
         foreach($plan->entries as $entry) {
             if($entry->entered > 0) {
                 $data[] = [date("m/d/Y", strtotime($entry->date)), $entry->amount];
@@ -74,7 +74,6 @@ class ApexchartsWidgetEntries extends Widget
                 $data[] = [date("m/d/Y", strtotime($entry->date)), null];
             }
             $sofar += $entry->amount;
-            if($entry->entered > 0) $sofar_days++;
             $cur_max = ($cur_max > $entry->amount) ? $cur_max : $entry->amount;
         }
         // make sure that cur_max is a multiple of a thousand, and if not, round up to nearest thousand
@@ -82,11 +81,14 @@ class ApexchartsWidgetEntries extends Widget
         
         $yaxis_max = $cur_max;
 
-        $remaining_days = $day_count - $sofar_days;
-        if($remaining_days < 2) {
-            $adjustedgoal = round(($goal - $sofar), 0, PHP_ROUND_HALF_UP);
+        if($goal - $sofar == 0) {
+            $adjustedgoal = 0;
         } else {
-            $adjustedgoal = round($goal / $day_count - 1, 0, PHP_ROUND_HALF_UP);
+            if($days_left == 0) {
+                $adjustedgoal = round(($goal - $sofar), 0, PHP_ROUND_HALF_UP);
+            } else {
+                $adjustedgoal = round(($goal - $sofar) / $days_left, 0, PHP_ROUND_HALF_UP);
+            }
         }
 
         // If adjusted goal is higher than the y axis, make it longer

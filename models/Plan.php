@@ -48,6 +48,7 @@ class Plan extends \yii\db\ActiveRecord
             'start' => Yii::t('app', 'Start'),
             'end' => Yii::t('app', 'End'),
             'goal' => Yii::t('app', 'Goal'),
+            'daycount' => Yii::t('app', 'Daycount'),
         ];
     }
 

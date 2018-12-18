@@ -110,7 +110,7 @@ class PlanController extends Controller
         }
 
         return $this->render('update', [
-            'plan' => $model,
+            'model' => $model,
         ]);
     }
 

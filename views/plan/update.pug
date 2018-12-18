@@ -1,13 +1,15 @@
--use yii\helpers\Html;
+-use yii\helpers\Html
+-use yii\bootstrap4\ActiveForm
+-use kartik\date\DatePicker
 -$view->title = 'Update plan - Writenator';
-.plan-update.container
+.plan-create.container
     h1 !=Html::encode($view->title)
-    p != Html::a(Yii::t('app', 'Create Plan'), ['create'], ['class' => 'btn btn-success'])
-    -if(empty($plans)) {
-        !="<p class='quiet'>No plans were found</p>"
-    -}
-    -if(!empty($plans)) {
-        -foreach($plans as $plan) {
-            !=$plan->title
-        -}
-    -}
+    .row
+        .col-lg-5
+            -$form = ActiveForm::begin(['id' => 'update-form'])
+            !=$form->field($model, 'title')
+            !=DatePicker::widget(['model' => $model, 'type' => DatePicker::TYPE_RANGE,'attribute' => 'start','attribute2' => 'end','separator' => '<i class="glyphicon glyphicon-resize-horizontal"></i>','layout' => $layout3,'pluginOptions' => ['autoclose' => true,'format' => 'dd-M-yyyy']])
+            !=$form->field($model, 'goal')
+            .form-group
+                !=Html::submitButton('Update', ['class' => 'btn btn-primary', 'name' => 'update-button'])
+                -ActiveForm::end()
