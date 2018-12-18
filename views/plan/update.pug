@@ -1,4 +1,6 @@
 -use yii\helpers\Html
+-use yii\grid\GridView
 -$view->title = 'Update plan - Writenator';
 .plan-create.container
     h1 !=Html::encode($view->title)
+    != GridView::widget(['dataProvider' => $dataProvider,])

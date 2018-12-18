@@ -9,6 +9,7 @@ use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\db\Query;
 
 /**
  * PlanController implements the CRUD actions for Plan model.
@@ -123,14 +124,15 @@ class PlanController extends Controller
      */
     public function actionUpdate($id)
     {
-        $model = $this->findModel($id);
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        }
+        $query = (new Query())->select('*')->from('entry');
+        $query->where(['plan_id' => $id, 'entered' => 1]);
+        $query->orderBy(['id' => SORT_DESC]);
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+        ]);
 
         return $this->render('update', [
-            'model' => $model,
+            'dataProvider' => $dataProvider,
         ]);
     }
 
