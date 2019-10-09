@@ -105,7 +105,7 @@ class ApexchartsWidgetEntries extends Widget
         $series = json_encode($this->series);
 
 
-        echo $this->render('entries', compact('id', 'series', 'yaxis_max', 'goal', 'day_count', 'remaining_days', 'sofar', 'adjustedgoal', 'days_left', 'time_ago'));
+        echo $this->render('entries', compact('id', 'series', 'yaxis_max', 'goal', 'day_count', 'sofar', 'adjustedgoal', 'days_left', 'time_ago'));
     }
 
 
