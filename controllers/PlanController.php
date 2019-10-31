@@ -133,6 +133,7 @@ class PlanController extends Controller
 
         return $this->render('update', [
             'dataProvider' => $dataProvider,
+            'plan_id' => $id,
         ]);
     }
 

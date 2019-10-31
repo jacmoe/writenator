@@ -62,16 +62,17 @@ class EntryController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
+    public function actionCreate($plan_id)
     {
         $model = new Entry();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['plan/view', 'id' => $model->plan_id]);
         }
 
         return $this->render('create', [
             'model' => $model,
+            'plan_id' => $plan_id,
         ]);
     }
 

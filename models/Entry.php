@@ -31,7 +31,7 @@ class Entry extends \yii\db\ActiveRecord
         return [
             [['plan_id', 'amount'], 'integer'],
             [['date', 'amount'], 'required'],
-            [['date'], 'safe'],
+            [['date', 'entered'], 'safe'],
         ];
     }
 

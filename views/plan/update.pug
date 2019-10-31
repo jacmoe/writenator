@@ -4,3 +4,5 @@
 .plan-create.container
     h1 !=Html::encode($view->title)
     != GridView::widget(['dataProvider' => $dataProvider,])
+
+    != Html::a(Yii::t('app', 'Add Entry'), ['entry/create', 'plan_id' => $plan_id], ['class' => 'btn btn-warning btn-sm'])

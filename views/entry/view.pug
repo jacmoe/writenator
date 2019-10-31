@@ -1,13 +1,4 @@
 -use yii\helpers\Html;
--$view->title = $entry->title . ' - Writenator';
+-$view->title = $model->plan_id . ' - ' . $model->date . ' - Writenator';
 .plan-index.container
-    h1 !=Html::encode($plan->title)
-    .row
-        .col
-            -echo app\widgets\ApexchartsWidget::widget(['plan_id' => $plan->id])
-        .col
-            -echo app\widgets\ApexchartsWidgetEntries::widget(['plan_id' => $plan->id])
-    hr
-    != Html::a(Yii::t('app', 'Edit Plan'), ['edit', 'id' => $plan->id], ['class' => 'btn btn-warning btn-sm'])
-    |      
-    != Html::a(Yii::t('app', 'Update Plan'), ['update', 'id' => $plan->id], ['class' => 'btn btn-success btn-sm'])
+    h1 !=Html::encode($view->title)
