@@ -66,8 +66,17 @@ class EntryController extends Controller
     {
         $model = new Entry();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['plan/view', 'id' => $model->plan_id]);
+        if ($model->load(Yii::$app->request->post())) {
+
+            if (($entry = Entry::find()->where(['date' => $model->date])->one()) !== null) {
+
+                $entry->amount = $model->amount;
+                $entry->entered = true;
+                
+                if ($entry->save()) {
+                    return $this->redirect(['plan/view', 'id' => $entry->plan_id]);
+                }
+            }
         }
 
         return $this->render('create', [
@@ -88,7 +97,7 @@ class EntryController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['plan/view', 'id' => $model->plan_id]);
         }
 
         return $this->render('update', [

@@ -126,7 +126,7 @@ class PlanController extends Controller
     {
         $query = (new Query())->select('*')->from('entry');
         $query->where(['plan_id' => $id, 'entered' => 1]);
-        $query->orderBy(['id' => SORT_DESC]);
+        $query->orderBy(['id' => SORT_ASC]);
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
