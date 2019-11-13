@@ -73,17 +73,23 @@ class ApexchartsWidget extends Widget
         $adjusted_accumulated = 0;
         $calculate_adjusted = true;
         $adjustedgoal = 0;
+        $today_entry = 0;
+        $day_date = date("m/d/Y");
         foreach($plan->entries as $entry) {
+            $entry_date = date("m/d/Y", strtotime($entry->date));
             $normalsacc = $normalsacc + $daygoalnorm;
             if($normalsacc >= $plan->goal) $normalsacc = $plan->goal;
             $normals[] = [date("m/d/Y", strtotime($entry->date)), $normalsacc];
             if($entry->entered > 0) {
                 $accumulated = $accumulated + $entry->amount;
+                if($entry_date == $day_date) {
+                    $today_entry = $entry->amount;
+                }
                 $data[] = [date("m/d/Y", strtotime($entry->date)), $accumulated];
             } else {
                 $data[] = [date("m/d/Y", strtotime($entry->date)), null];
                 if($calculate_adjusted) {
-                    $adjusted_accumulated = $accumulated;
+                    $adjusted_accumulated = $accumulated - $today_entry;
                     if($plan->goal - $accumulated == 0) {
                         $adjustedgoal = 0;
                     } else {
@@ -94,6 +100,8 @@ class ApexchartsWidget extends Widget
                         }
                     }
                     $calculate_adjusted = false;
+                    $adjusted_accumulated = $adjusted_accumulated + $adjustedgoal;
+                    $adjusted[] = [date("m/d/Y", strtotime($day_date)), $adjusted_accumulated];
                     $adjusted_accumulated = $adjusted_accumulated + $adjustedgoal;
                 } else {
                     $adjusted_accumulated = $adjusted_accumulated + $adjustedgoal;
@@ -111,7 +119,11 @@ class ApexchartsWidget extends Widget
 
         $yaxis_max = ($cur_max <= $yaxis_max) ? $yaxis_max : $cur_max;
 
-        $this->series = [['name' => 'Words', 'data' => $data], ['name' => 'Goal', 'data' => $normals], ['name' => 'Adjusted', 'data' => $adjusted]];
+        if($days_left >= 2) {
+            $this->series = [['name' => 'Words', 'data' => $data], ['name' => 'Goal', 'data' => $normals], ['name' => 'Adjusted', 'data' => $adjusted]];
+        } else {
+            $this->series = [['name' => 'Words', 'data' => $data], ['name' => 'Goal', 'data' => $normals]];
+        }
         $series = json_encode($this->series);
 
         $words_left = $goal - $accumulated;
