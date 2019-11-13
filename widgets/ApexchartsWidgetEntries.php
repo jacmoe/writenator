@@ -56,7 +56,7 @@ class ApexchartsWidgetEntries extends Widget
         $datetime1 = date_create();
         $datetime2 = date_create($end);
         $interval = date_diff($datetime1, $datetime2);
-        $days_left = $interval->format('%R%a') + 1;
+        $days_left = $interval->format('%R%a') + 2;
 
         $completed = false;
         if($days_left <= 0) {

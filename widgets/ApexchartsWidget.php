@@ -55,7 +55,7 @@ class ApexchartsWidget extends Widget
         $datetime1 = date_create();
         $datetime2 = date_create($end);
         $interval = date_diff($datetime1, $datetime2);
-        $days_left = $interval->format('%R%a') + 1;
+        $days_left = $interval->format('%R%a') + 2;
 
         $completed = false;
         if($days_left <= 0) {
@@ -64,19 +64,41 @@ class ApexchartsWidget extends Widget
 
         $data = array();
         $normals = array();
+        $adjusted = array();
         $daygoalnorm = round($plan->goal / $day_count, 0, PHP_ROUND_HALF_UP);
         $normalsacc = 0;
 
         $cur_max = 0;
         $accumulated = 0;
+        $adjusted_accumulated = 0;
+        $calculate_adjusted = true;
+        $adjustedgoal = 0;
         foreach($plan->entries as $entry) {
             $normalsacc = $normalsacc + $daygoalnorm;
+            if($normalsacc >= $plan->goal) $normalsacc = $plan->goal;
             $normals[] = [date("m/d/Y", strtotime($entry->date)), $normalsacc];
             if($entry->entered > 0) {
                 $accumulated = $accumulated + $entry->amount;
                 $data[] = [date("m/d/Y", strtotime($entry->date)), $accumulated];
             } else {
                 $data[] = [date("m/d/Y", strtotime($entry->date)), null];
+                if($calculate_adjusted) {
+                    $adjusted_accumulated = $accumulated;
+                    if($plan->goal - $accumulated == 0) {
+                        $adjustedgoal = 0;
+                    } else {
+                        if($days_left == 0) {
+                            $adjustedgoal = round(($plan->goal - $adjusted_accumulated), 0, PHP_ROUND_HALF_UP);
+                        } else {
+                            $adjustedgoal = round(($plan->goal - $adjusted_accumulated) / $days_left, 0, PHP_ROUND_HALF_UP);
+                        }
+                    }
+                    $calculate_adjusted = false;
+                    $adjusted_accumulated = $adjusted_accumulated + $adjustedgoal;
+                } else {
+                    $adjusted_accumulated = $adjusted_accumulated + $adjustedgoal;
+                }
+                $adjusted[] = [date("m/d/Y", strtotime($entry->date)), $adjusted_accumulated];
             }
             $cur_max = ($cur_max > $accumulated) ? $cur_max : $accumulated;
         }
@@ -89,7 +111,7 @@ class ApexchartsWidget extends Widget
 
         $yaxis_max = ($cur_max <= $yaxis_max) ? $yaxis_max : $cur_max;
 
-        $this->series = [['name' => 'Words', 'data' => $data], ['name' => 'Goal', 'data' => $normals]];
+        $this->series = [['name' => 'Words', 'data' => $data], ['name' => 'Goal', 'data' => $normals], ['name' => 'Adjusted', 'data' => $adjusted]];
         $series = json_encode($this->series);
 
         $words_left = $goal - $accumulated;
