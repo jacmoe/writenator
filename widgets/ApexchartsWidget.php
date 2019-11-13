@@ -63,10 +63,15 @@ class ApexchartsWidget extends Widget
         }
 
         $data = array();
+        $normals = array();
+        $daygoalnorm = round($plan->goal / $day_count, 0, PHP_ROUND_HALF_UP);
+        $normalsacc = 0;
 
         $cur_max = 0;
         $accumulated = 0;
         foreach($plan->entries as $entry) {
+            $normalsacc = $normalsacc + $daygoalnorm;
+            $normals[] = [date("m/d/Y", strtotime($entry->date)), $normalsacc];
             if($entry->entered > 0) {
                 $accumulated = $accumulated + $entry->amount;
                 $data[] = [date("m/d/Y", strtotime($entry->date)), $accumulated];
@@ -84,7 +89,7 @@ class ApexchartsWidget extends Widget
 
         $yaxis_max = ($cur_max <= $yaxis_max) ? $yaxis_max : $cur_max;
 
-        $this->series = [['name' => 'Words', 'data' => $data]];
+        $this->series = [['name' => 'Words', 'data' => $data], ['name' => 'Goal', 'data' => $normals]];
         $series = json_encode($this->series);
 
         $words_left = $goal - $accumulated;
