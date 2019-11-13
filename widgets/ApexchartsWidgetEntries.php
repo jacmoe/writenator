@@ -68,11 +68,17 @@ class ApexchartsWidgetEntries extends Widget
 
         $cur_max = 0;
         $sofar = 0;
+        $today_entry = 0;
+        $day_date = date("m/d/Y");
         foreach($plan->entries as $entry) {
+            $entry_date = date("m/d/Y", strtotime($entry->date));
             if($entry->entered > 0) {
-                $data[] = [date("m/d/Y", strtotime($entry->date)), $entry->amount];
+                $data[] = [$entry_date, $entry->amount];
+                if($entry_date == $day_date) {
+                    $today_entry = $entry->amount;
+                }
             } else {
-                $data[] = [date("m/d/Y", strtotime($entry->date)), null];
+                $data[] = [$entry_date, null];
             }
             $sofar += $entry->amount;
             $cur_max = ($cur_max > $entry->amount) ? $cur_max : $entry->amount;
@@ -105,7 +111,7 @@ class ApexchartsWidgetEntries extends Widget
         $series = json_encode($this->series);
 
 
-        echo $this->render('entries', compact('id', 'series', 'yaxis_max', 'goal', 'day_count', 'sofar', 'adjustedgoal', 'days_left', 'time_ago'));
+        echo $this->render('entries', compact('id', 'series', 'yaxis_max', 'goal', 'day_count', 'sofar', 'adjustedgoal', 'days_left', 'time_ago', 'today_entry'));
     }
 
 
