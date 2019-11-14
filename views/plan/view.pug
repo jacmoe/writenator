@@ -10,4 +10,6 @@
     hr
     != Html::a(Yii::t('app', 'Edit Plan'), ['edit', 'id' => $plan->id], ['class' => 'btn btn-warning btn-sm'])
     |      
+    - if(!$ended) {
     != Html::a(Yii::t('app', 'Update Plan'), ['update', 'id' => $plan->id], ['class' => 'btn btn-success btn-sm'])
+    - }
