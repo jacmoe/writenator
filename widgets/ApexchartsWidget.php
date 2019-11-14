@@ -88,6 +88,9 @@ class ApexchartsWidget extends Widget
                 $data[] = [date("m/d/Y", strtotime($entry->date)), $accumulated];
             } else {
                 $data[] = [date("m/d/Y", strtotime($entry->date)), null];
+                if($entry_date == $day_date) {
+                    continue;
+                }
                 if($calculate_adjusted) {
                     $adjusted_accumulated = $accumulated - $today_entry;
                     if($plan->goal - $accumulated == 0) {
