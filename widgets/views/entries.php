@@ -19,7 +19,22 @@ $wordsleft_today = $adjustedgoal - $today_entry;
 if ($wordsleft_today < 0) {
   $wordsleft_today = 0;
 }
+$day_number = $day_count - $days_left;
+$progress = ($day_number / $day_count) * 100;
+$progress = round($progress, 0, PHP_ROUND_HALF_UP);
+$status = "";
+if($progress >= 100) {
+  $status = "<span class='badge badge-success'>Successfully</span> completed!<hr/>";
+}
 ?>
+<div style="padding-left: 60px; padding-right: 60px; font-size: 12px">
+<hr/>
+    <div>Day <?= $day_number ?> out of <?= $day_count ?>.</div>
+      <div class="progress">
+    <div class="progress-bar bg-warning" role="progressbar" style="width: <?= $progress ?>%" aria-valuenow="<?= $progress ?>" aria-valuemin="0" aria-valuemax="100"><?= $progress ?>%</div>
+  </div>
+</div>
+<hr/>
 
 <div id="<?= json_decode($id) ?>" class="apexcharts-container">
     <widget-apexcharts :width="width" :height="height" :type="type" :chart-options="chartOptions" :series="series"></widget-apexcharts>
