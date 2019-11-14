@@ -97,6 +97,9 @@ class ApexchartsWidgetEntries extends Widget
                 $adjustedgoal = round(($goal - ($sofar - $today_entry)) / $days_left, 0, PHP_ROUND_HALF_UP);
             }
         }
+        if ($adjustedgoal < 0) {
+            $adjustedgoal = 0;
+        }
 
         // If adjusted goal is higher than the y axis, make it longer
         $tadjustedgoal = $adjustedgoal;
