@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use Yii;
 use app\models\Entry;
+use app\models\Heat;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -72,7 +73,12 @@ class EntryController extends Controller
 
                 $entry->amount = $model->amount;
                 $entry->entered = true;
-                
+
+                $heat = new Heat();
+                $heat->entries = $heat->entries + 1;
+                $heat->date = $entry->date;
+                $heat->save();
+
                 if ($entry->save()) {
                     return $this->redirect(['plan/view', 'id' => $entry->plan_id]);
                 }
