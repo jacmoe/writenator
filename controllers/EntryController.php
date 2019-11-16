@@ -5,6 +5,7 @@ namespace app\controllers;
 use Yii;
 use app\models\Entry;
 use app\models\Heat;
+use app\models\Wordcount;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -74,12 +75,27 @@ class EntryController extends Controller
                 $entry->amount = $model->amount;
                 $entry->entered = true;
 
-                $heat = new Heat();
+                // find existing heat entry or create a new one
+                if (($theheat = Heat::find()->where(['date' => $model->date])->one()) !== null) {
+                    $heat = $theheat;
+                } else {
+                    $heat = new Heat();
+                }
                 $heat->entries = $heat->entries + 1;
                 $heat->date = $entry->date;
                 $heat->save();
 
                 if ($entry->save()) {
+                    $words = null;
+                    if (($thewords = Wordcount::find()->one()) !== null) {
+                        $words = $thewords;
+                    } else {
+                        $words = new Wordcount();
+                    }
+                    $query = Entry::find();
+                    $words->totalwords = $query->sum('amount');
+                    $words->save();
+
                     return $this->redirect(['plan/view', 'id' => $entry->plan_id]);
                 }
             }
