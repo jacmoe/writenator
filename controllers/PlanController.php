@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use app\models\Plan;
 use app\models\Entry;
+use app\models\Wordcount;
 use Yii;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
@@ -41,8 +42,14 @@ class PlanController extends Controller
             'query' => Plan::find(),
         ]);
 
+        $totalwords = 0;
+        if (($words = Wordcount::find()->one()) !== null) {
+            $totalwords = $words->totalwords;
+        }
+
         return $this->render('index', [
             'plans' => $dataProvider->getModels(),
+            'totalwords' => $totalwords,
         ]);
     }
 

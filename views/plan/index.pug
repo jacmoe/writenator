@@ -1,7 +1,13 @@
 -use yii\helpers\Html;
 -$view->title = 'Plans - Writenator';
 .plan-index.container
-    h1 Plans
+    .row
+        .col
+            -echo app\widgets\HeatWidget::widget()
+    .row
+        .col
+            -echo number_format($totalwords) . " words written."
+    hr
     .row
         .col
             p != Html::a(Yii::t('app', 'Create Plan'), ['create'], ['class' => 'btn btn-success'])
