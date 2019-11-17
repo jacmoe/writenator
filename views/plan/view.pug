@@ -2,6 +2,9 @@
 -$view->title = $plan->title . ' - Writenator';
 .plan-index.container-fluid
     h1 !=Html::encode($plan->title)
+    - if(!$ended) {
+    != Html::a(Yii::t('app', 'Add Entry'), ['update', 'id' => $plan->id], ['class' => 'btn btn-success btn-sm right'])
+    - }
     .row
         .col
             -echo app\widgets\ApexchartsWidget::widget(['plan_id' => $plan->id])
@@ -11,5 +14,5 @@
     != Html::a(Yii::t('app', 'Edit Plan'), ['edit', 'id' => $plan->id], ['class' => 'btn btn-warning btn-sm'])
     |      
     - if(!$ended) {
-    != Html::a(Yii::t('app', 'Update Plan'), ['update', 'id' => $plan->id], ['class' => 'btn btn-success btn-sm'])
+    != Html::a(Yii::t('app', 'Add Entry'), ['update', 'id' => $plan->id], ['class' => 'btn btn-success btn-sm'])
     - }
