@@ -7,8 +7,7 @@ use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\Response;
 use yii\filters\VerbFilter;
-use app\models\LoginForm;
-use app\models\ContactForm;
+use app\models\Wordcount;
 
 class SiteController extends Controller
 {
@@ -40,7 +39,13 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $totalwords = 0;
+        if (($words = Wordcount::find()->one()) !== null) {
+            $totalwords = $words->totalwords;
+        }
+        return $this->render('index', [
+            'totalwords' => $totalwords,
+        ]);
     }
 
 }
