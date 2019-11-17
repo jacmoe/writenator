@@ -10,7 +10,12 @@
     hr
     .row
         .col
-            p != Html::a(Yii::t('app', 'Create Plan'), ['create'], ['class' => 'btn btn-success'])
+            != Html::a(Yii::t('app', 'Add Global Entry'), ['entry/create'], ['class' => 'btn btn-success btn-sm'])
+    hr
+    h2
+    |    Goals
+    hr
+    .row
         .col
             -if(empty($plans)) {
                 !="<p class='quiet'>No plans were found</p>"
@@ -21,6 +26,11 @@
                     div !=$plan->title
                     -echo app\widgets\ApexchartsWidget::widget(['plan_id' => $plan->id, 'render' => false])
                     != Html::a(Yii::t('app', 'View'), ['view', 'id' => $plan->id], ['class' => 'btn btn-success btn-sm'])
+                    nbsp
+                    != Html::a(Yii::t('app', 'Add Entry'), ['entry/create', 'id' => $plan->id, 'index' => true], ['class' => 'btn btn-warning btn-sm'])
                     hr
                 -}
             -}
+    .row
+        .col
+            p != Html::a(Yii::t('app', 'Create New Goal'), ['create'], ['class' => 'btn btn-success'])
