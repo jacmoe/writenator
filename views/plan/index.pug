@@ -10,7 +10,7 @@
     hr
     .row
         .col
-            != Html::a(Yii::t('app', 'Add Global Entry'), ['entry/create'], ['class' => 'btn btn-success btn-sm'])
+            != Html::a(Yii::t('app', 'Add Global Wordcount'), ['entry/create'], ['class' => 'btn btn-success btn-sm'])
     hr
     h2
     |    Goals
@@ -25,9 +25,11 @@
                 -foreach($plans as $plan) {
                     div !=$plan->title
                     -echo app\widgets\ApexchartsWidget::widget(['plan_id' => $plan->id, 'render' => false])
+                    -echo app\widgets\ApexchartsWidgetEntries::widget(['plan_id' => $plan->id, 'render' => false])
+                    hr
                     != Html::a(Yii::t('app', 'View'), ['view', 'id' => $plan->id], ['class' => 'btn btn-success btn-sm'])
                     nbsp
-                    != Html::a(Yii::t('app', 'Add Entry'), ['entry/create', 'id' => $plan->id, 'index' => true], ['class' => 'btn btn-warning btn-sm'])
+                    != Html::a(Yii::t('app', 'Add Local Wordcount'), ['entry/create', 'plan_id' => $plan->id, 'index' => 1], ['class' => 'btn btn-warning btn-sm'])
                     hr
                 -}
             -}

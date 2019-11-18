@@ -17,6 +17,7 @@ class ApexchartsWidgetEntries extends Widget
 {
 
     public $plan_id;
+    public $render = true;
 
     private $id = 'apexcharts-widget-entries';
     private $series = [];
@@ -113,7 +114,9 @@ class ApexchartsWidgetEntries extends Widget
         $this->series = [['name' => 'Words', 'data' => $data]];
         $series = json_encode($this->series);
 
-        echo $this->render('entries', compact('id', 'series', 'yaxis_max', 'goal', 'day_count', 'sofar', 'adjustedgoal', 'days_left', 'time_ago', 'today_entry'));
+        $render = $this->render;
+
+        echo $this->render('entries', compact('id', 'render', 'series', 'yaxis_max', 'goal', 'day_count', 'sofar', 'adjustedgoal', 'days_left', 'time_ago', 'today_entry'));
     }
 
 

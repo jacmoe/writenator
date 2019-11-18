@@ -64,7 +64,7 @@ class EntryController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate($plan_id = null, $index = false)
+    public function actionCreate($plan_id = null, $index = null)
     {
         $model = new Entry();
 
@@ -97,7 +97,7 @@ class EntryController extends Controller
                     $words->save();
 
                     if($plan_id !== null) {
-                        if($index) {
+                        if($index !== null) {
                             return $this->redirect(['plan/index']);
                         } else {
                             return $this->redirect(['plan/view', 'id' => $entry->plan_id]);

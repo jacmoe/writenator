@@ -47,6 +47,7 @@ if($progress >= 100) {
 </div>
 
 <?php
+if($render) {
 
 $this->registerJs(<<<JS
 
@@ -108,4 +109,4 @@ chart.render();
 
 JS
 );
-
+}

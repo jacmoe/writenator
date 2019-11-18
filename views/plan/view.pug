@@ -3,7 +3,7 @@
 .plan-index.container-fluid
     h1 !=Html::encode($plan->title)
     - if(!$ended) {
-    != Html::a(Yii::t('app', 'Add Entry'), ['update', 'id' => $plan->id], ['class' => 'btn btn-success btn-sm right'])
+    != Html::a(Yii::t('app', 'Add Wordcount'), ['entry/create', 'plan_id' => $plan->id, 'index' => null], ['class' => 'btn btn-success btn-sm right'])
     - }
     .row
         .col
@@ -14,5 +14,5 @@
     != Html::a(Yii::t('app', 'Edit Plan'), ['edit', 'id' => $plan->id], ['class' => 'btn btn-warning btn-sm'])
     |      
     - if(!$ended) {
-    != Html::a(Yii::t('app', 'Add Entry'), ['update', 'id' => $plan->id], ['class' => 'btn btn-success btn-sm'])
+    != Html::a(Yii::t('app', 'Add Wordcount'), ['entry/create', 'plan_id' => $plan->id, 'index' => null], ['class' => 'btn btn-success btn-sm'])
     - }
