@@ -64,9 +64,9 @@ class EntryController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate($plan_id = null, $index = null)
+    public function actionCreate($index = 0, $plan_id = null)
     {
-        $plan_id = Yii::$app->request->get('plan_id');
+        
         $model = new Entry();
 
         if ($model->load(Yii::$app->request->post())) {
@@ -98,7 +98,7 @@ class EntryController extends Controller
                     $words->save();
 
                     if($plan_id !== null) {
-                        if($index !== null) {
+                        if($index == 1) {
                             return $this->redirect(['plan/index']);
                         } else {
                             return $this->redirect(['plan/view', 'id' => $entry->plan_id]);
