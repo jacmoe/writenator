@@ -64,7 +64,7 @@ class EntryController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate($index = 0, $plan_id = null)
+    public function actionCreate($plan_id, $index = 0)
     {
         
         $model = new Entry();
@@ -98,13 +98,11 @@ class EntryController extends Controller
                     $words->save();
 
                     if($plan_id !== null) {
-                        if($index == 1) {
+                        if($index !== 0) {
                             return $this->redirect(['plan/index']);
                         } else {
                             return $this->redirect(['plan/view', 'id' => $entry->plan_id]);
                         }
-                    } else {
-                        return $this->redirect(['plan/index']);
                     }
                 }
             }
@@ -113,6 +111,50 @@ class EntryController extends Controller
         return $this->render('create', [
             'model' => $model,
             'plan_id' => $plan_id,
+        ]);
+    }
+
+    /**
+     * Creates a new Entry model.
+     * If creation is successful, the browser will be redirected to the 'view' page.
+     * @return mixed
+     */
+    public function actionGlobal()
+    {
+        
+        $model = new Entry();
+
+        if ($model->load(Yii::$app->request->post())) {
+
+            $model->plan_id = null;
+
+            // find existing heat entry or create a new one
+            if (($theheat = Heat::find()->where(['date' => $model->date])->one()) !== null) {
+                $heat = $theheat;
+            } else {
+                $heat = new Heat();
+            }
+            $heat->entries = $heat->entries + 1;
+            $heat->date = $model->date;
+            $heat->save();
+
+            if ($model->save()) {
+                $words = null;
+                if (($thewords = Wordcount::find()->one()) !== null) {
+                    $words = $thewords;
+                } else {
+                    $words = new Wordcount();
+                }
+                $query = Entry::find();
+                $words->totalwords = $query->sum('amount');
+                $words->save();
+
+                return $this->redirect(['plan/index']);
+            }
+        }
+
+        return $this->render('global', [
+            'model' => $model
         ]);
     }
 

@@ -10,7 +10,7 @@
     hr
     .row
         .col
-            != Html::a(Yii::t('app', 'Add Global Wordcount'), ['entry/create', 'index' => 1], ['class' => 'btn btn-success btn-sm'])
+            != Html::a(Yii::t('app', 'Add Global Wordcount'), ['entry/global'], ['class' => 'btn btn-success btn-sm'])
     hr
     h2
     |    Goals
@@ -29,7 +29,7 @@
                     hr
                     != Html::a(Yii::t('app', 'View'), ['view', 'id' => $plan->id], ['class' => 'btn btn-success btn-sm'])
                     nbsp
-                    != Html::a(Yii::t('app', 'Add Local Wordcount'), ['entry/create', 'index' => 1, 'plan_id' => $plan->id], ['class' => 'btn btn-warning btn-sm'])
+                    != Html::a(Yii::t('app', 'Add Local Wordcount'), ['entry/create', 'plan_id' => $plan->id, 'index' => 1], ['class' => 'btn btn-warning btn-sm'])
                     hr
                 -}
             -}

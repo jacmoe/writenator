@@ -1,16 +1,15 @@
 -use yii\helpers\Html
 -use yii\bootstrap4\ActiveForm
 -use kartik\date\DatePicker
--$view->title = 'Add wordcount - Writenator';
+-$view->title = 'Add global wordcount - Writenator';
 .plan-create.container
     h1 !=Html::encode($view->title)
     .row
         .col-lg-5
-            -$form = ActiveForm::begin(['id' => 'update-form'])
-            !=$form->field($model, 'plan_id')->hiddenInput(['value' => $plan_id])->label(false)
+            -$form = ActiveForm::begin(['id' => 'global-form'])
             !=$form->field($model, 'entered')->hiddenInput(['value' => true])->label(false)
             !=$form->field($model, 'amount')
             !=$form->field($model, 'date')->widget(DatePicker::classname(), ['options' => ['value' => date("Y-m-d")],'pluginOptions' => ['autoclose'=>true,'format' => 'yyyy-m-d']])
             .form-group
-                !=Html::submitButton('Add', ['class' => 'btn btn-primary', 'name' => 'update-button'])
+                !=Html::submitButton('Add', ['class' => 'btn btn-primary', 'name' => 'global-button'])
                 -ActiveForm::end()
