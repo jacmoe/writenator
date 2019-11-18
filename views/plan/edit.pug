@@ -8,7 +8,7 @@
         .col-lg-5
             -$form = ActiveForm::begin(['id' => 'edit-form'])
             !=$form->field($model, 'title')
-            !=DatePicker::widget(['model' => $model, 'type' => DatePicker::TYPE_RANGE,'attribute' => 'start','attribute2' => 'end','separator' => '<i class="glyphicon glyphicon-resize-horizontal"></i>','layout' => $layout3,'pluginOptions' => ['autoclose' => true,'format' => 'dd-M-yyyy']])
+            !=DatePicker::widget(['model' => $model, 'type' => DatePicker::TYPE_RANGE,'attribute' => 'start','attribute2' => 'end','separator' => '<i class="glyphicon glyphicon-resize-horizontal"></i>','layout' => $layout3,'pluginOptions' => ['autoclose' => true,'format' => 'yyyy-m-d']])
             !=$form->field($model, 'goal')
             .form-group
                 !=Html::submitButton('Update', ['class' => 'btn btn-primary', 'name' => 'update-button'])
