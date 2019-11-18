@@ -49,7 +49,7 @@ class HeatWidget extends Widget
         foreach($quarter->split('1 MONTH') as $month) {
             $data = array();
             foreach($month->split('1 DAY', \DatePeriod::EXCLUDE_START_DATE) as $day) {
-                $date = date('d-M-Y', $day->getStartDate()->getTimestamp());
+                $date = date('Y-m-d', $day->getStartDate()->getTimestamp());
                 if(array_key_exists($date, $heats)) {
                     $data[] = array('x' => $day->getStartDate()->format('d'), 'y' => $heats[$date]);
                 } else {

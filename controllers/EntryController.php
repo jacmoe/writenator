@@ -66,6 +66,7 @@ class EntryController extends Controller
      */
     public function actionCreate($plan_id = null, $index = null)
     {
+        $plan_id = Yii::$app->request->get('plan_id');
         $model = new Entry();
 
         if ($model->load(Yii::$app->request->post())) {

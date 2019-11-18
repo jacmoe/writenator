@@ -63,7 +63,7 @@ class PlanController extends Controller
     {
         $model = $this->findModel($id);
         $end_date = date_create($model->end);
-        $today_date = date_create(date("d-M-Y"));
+        $today_date = date_create(date("Y-m-d"));
         $interval = date_diff($end_date, $today_date)->format('%R%a');
         $has_ended = $interval > 0;
 
@@ -90,13 +90,13 @@ class PlanController extends Controller
             $model->daycount = $daycount;
             $model->start = $_POST['start'];
             $model->end = $_POST['end'];
-            $date = date("d-M-Y", strtotime($model->start));
+            $date = date("Y-m-d", strtotime($model->start));
              if($model->save()) {
                 for ($i=0; $i < $model->daycount; $i++) { 
                     $entry = new Entry();
                     $entry->plan_id = $model->id;
                     $entry->date =  $date;
-                    $date = date("d-M-Y", strtotime($date . ' + 1 days'));
+                    $date = date("Y-m-d", strtotime($date . ' + 1 days'));
                     $entry->amount = 0;
                     $entry->save();
                 }
