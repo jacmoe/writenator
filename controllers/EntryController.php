@@ -97,12 +97,10 @@ class EntryController extends Controller
                     $words->totalwords = $query->sum('amount');
                     $words->save();
 
-                    if($plan_id !== null) {
-                        if($index !== 0) {
-                            return $this->redirect(['plan/index']);
-                        } else {
-                            return $this->redirect(['plan/view', 'id' => $entry->plan_id]);
-                        }
+                    if($index == 1) {
+                        return $this->redirect(['plan/index']);
+                    } else {
+                        return $this->redirect(['plan/view', 'id' => $entry->plan_id]);
                     }
                 }
             }
