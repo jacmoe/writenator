@@ -29,4 +29,4 @@ if($render) {
 JS
   );
 };
-echo '<div>Current streak: '. $streak_count . '</div>';
+echo '<div>Current streak: '. $streak_count . ' days.</div>';

@@ -20,6 +20,7 @@ if ($wordsleft_today < 0) {
   $wordsleft_today = 0;
 }
 $day_number = $day_count - $days_left;
+$average = $sofar / $day_number;
 $progress = ($day_number / $day_count) * 100;
 $progress = round($progress, 0, PHP_ROUND_HALF_UP);
 $status = "";
@@ -43,6 +44,7 @@ if($progress >= 100) {
     <div><?= $days_left ?> days left.<?php if($days_left <= 0) echo ' (Ended ' . $time_ago . ')'; ?></div>
     <div style="font-size: 12px"><span style="background-color: #00E396">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> Target Quota for each day : <?= number_format($daygoal) ?> words.</div>
     <div style="font-size: 12px"><span style="background-color: #FEB019">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> Adjusted Target Quota based on current progress: <?= number_format($adjustedgoal) ?> words.</div>
+    <div style="font-size: 12px"><span style="background-color: #008FFB">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> Average Wordcount for each day: <?= number_format($average) ?> words.</div>
     <div style="font-size: 12px">Words left to write today: <?=  number_format($wordsleft_today) ?></div>
 </div>
 
@@ -84,6 +86,10 @@ var options = {
       {
         y: $daygoal,
         borderColor: '#00E396',
+      },
+      {
+        y: $average,
+        borderColor: '#008FFB',
       }
     ]
   },
