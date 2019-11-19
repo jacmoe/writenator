@@ -27,7 +27,7 @@ if($completed) {
 <?= $status ?>
 <div style="padding-left: 60px; padding-right: 60px; font-size: 12px">
   <div>Goal: <?= number_format($goal) ?> words over <?= $day_count ?> days.</div>
-  <div>From <span style="padding: 0 5px 0 5px"><?= date('d/m/Y', strtotime($start)) ?></span> to <span style="padding: 0 5px 0 5px"><?= date('d/m/Y', strtotime($end)) ?></span></div>
+  <div>From <span style="padding: 0 5px 0 5px"><?= date('F d Y', strtotime($start)) ?></span> to <span style="padding: 0 5px 0 5px"><?= date('F d Y', strtotime($end)) ?></span></div>
   <div class="progress">
     <div class="progress-bar bg-success" role="progressbar" style="width: <?= $progress ?>%" aria-valuenow="<?= $progress ?>" aria-valuemin="0" aria-valuemax="100"><?= $progress ?>%</div>
   </div>
