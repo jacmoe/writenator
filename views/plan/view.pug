@@ -2,7 +2,7 @@
 -$view->title = $plan->title . ' - Writenator';
 .plan-index.container-fluid
     h1 !=Html::encode($plan->title)
-    - if(!$ended) {
+    - if($plan->status == 'progressing') {
     != Html::a(Yii::t('app', 'Add Wordcount'), ['entry/create', 'plan_id' => $plan->id, 'index' => 0], ['class' => 'btn btn-success btn-sm right'])
     - }
     .row
@@ -13,6 +13,6 @@
     hr
     != Html::a(Yii::t('app', 'Edit Plan'), ['edit', 'id' => $plan->id], ['class' => 'btn btn-warning btn-sm'])
     |      
-    - if(!$ended) {
+    - if($plan->status == 'progressing') {
     != Html::a(Yii::t('app', 'Add Wordcount'), ['entry/create', 'plan_id' => $plan->id, 'index' => 0], ['class' => 'btn btn-success btn-sm'])
     - }
