@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use Carbon\CarbonPeriod;
 
 /**
  * This is the model class for table "plan".
@@ -47,6 +48,7 @@ class Plan extends \yii\db\ActiveRecord
             'start' => Yii::t('app', 'Start'),
             'end' => Yii::t('app', 'End'),
             'goal' => Yii::t('app', 'Goal'),
+            'daycount' => Yii::t('app', 'Daycount'),
         ];
     }
 
@@ -54,4 +56,11 @@ class Plan extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Entry::className(), ['plan_id' => 'id']);
     }
+
+    public function getDaycount()
+    {
+        $period = new CarbonPeriod($this->start, $this->end);
+        return $period->count();
+    }
+
 }
