@@ -63,4 +63,19 @@ class Plan extends \yii\db\ActiveRecord
         return $period->count();
     }
 
+    public function getStatus()
+    {
+        $period = new CarbonPeriod($this->start, $this->end);
+        if($period->startsAfter()) {
+            return 'not started yet';
+        }
+        if($period->isInProgress()) {
+            return 'progressing';
+        }
+        if($period->isEnded()) {
+            return 'ended';
+        }
+
+        return $period->count();
+    }
 }
