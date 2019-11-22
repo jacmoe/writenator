@@ -24,8 +24,6 @@
         "kartik-v/yii2-field-range": "*",
         "kartik-v/yii2-sortable-input": "dev-master",
         "kartik-v/yii2-tree-manager": "dev-master",
-        "jimmiw/php-time-ago": "^3.0",
-        "league/period": "^4.9",
         "nesbot/carbon": "^2.27"
     },
     "require-dev": {
