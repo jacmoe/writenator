@@ -16,7 +16,6 @@ class m181202_202322_initial extends Migration
             'start' => $this->dateTime()->notNull(),
             'end' => $this->dateTime()->notNull(),
             'goal' => $this->integer()->notNull(),
-            'daycount' => $this->integer()->notNull(),
         ]);
 
         $this->createTable('entry', [
@@ -33,16 +32,6 @@ class m181202_202322_initial extends Migration
             'plan_id'
         );
 
-        /* foreign keys not supported by Sqlite?
-        $this->addForeignKey(
-            'fk-entry-plan_id',
-            'entry',
-            'plan_id',
-            'plan',
-            'id',
-            'CASCADE'
-        );
-        */
     }
 
     public function down()

@@ -29,10 +29,9 @@ class Plan extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['title', 'start', 'end', 'goal', 'daycount'], 'required'],
-            [['start', 'end', 'daycount'], 'safe'],
+            [['title', 'start', 'end', 'goal'], 'required'],
+            [['start', 'end'], 'safe'],
             [['goal'], 'integer'],
-            [['daycount'], 'integer'],
             [['title'], 'string', 'max' => 255],
         ];
     }
@@ -48,7 +47,6 @@ class Plan extends \yii\db\ActiveRecord
             'start' => Yii::t('app', 'Start'),
             'end' => Yii::t('app', 'End'),
             'goal' => Yii::t('app', 'Goal'),
-            'daycount' => Yii::t('app', 'Daycount'),
         ];
     }
 
