@@ -11,7 +11,7 @@ use app\models\Plan;
 use Yii;
 use yii\base\InvalidConfigException;
 use yii\base\Widget;
-use Westsworld\TimeAgo;
+use Carbon\Carbon;
 
 class ApexchartsWidgetEntries extends Widget
 {
@@ -112,7 +112,7 @@ class ApexchartsWidgetEntries extends Widget
             $yaxis_max = $tadjustedgoal;
         }
 
-        $time_ago = 'some time ago';
+        $time_ago = Carbon::parse($plan->end)->diffForHumans();
         $this->series = [['name' => 'Words', 'data' => $data]];
         $series = json_encode($this->series);
 
