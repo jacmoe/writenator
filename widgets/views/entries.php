@@ -20,7 +20,12 @@ if ($wordsleft_today < 0) {
   $wordsleft_today = 0;
 }
 $day_number = $day_count - $days_left;
-$average = $sofar / $day_number;
+if ($day_number < 0) {
+  $day_number = 0;
+  $average = $sofar;
+} else {
+  $average = $sofar / $day_number;
+}
 $progress = ($day_number / $day_count) * 100;
 $progress = round($progress, 0, PHP_ROUND_HALF_UP);
 $status = "";

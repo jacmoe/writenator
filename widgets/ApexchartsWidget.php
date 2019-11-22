@@ -122,7 +122,7 @@ class ApexchartsWidget extends Widget
 
         $yaxis_max = ($cur_max <= $yaxis_max) ? $yaxis_max : $cur_max;
 
-        if($days_left >= 2) {
+        if(($days_left >= 2) and ($days_left <= $day_count)) {
             $this->series = [['name' => 'Words', 'data' => $data], ['name' => 'Goal', 'data' => $normals], ['name' => 'Adjusted', 'data' => $adjusted]];
         } else {
             $this->series = [['name' => 'Words', 'data' => $data], ['name' => 'Goal', 'data' => $normals]];

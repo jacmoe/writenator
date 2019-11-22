@@ -101,6 +101,9 @@ class ApexchartsWidgetEntries extends Widget
         if ($adjustedgoal < 0) {
             $adjustedgoal = 0;
         }
+        if($days_left > $day_count) {
+            $adjustedgoal = 0;
+        }
 
         // If adjusted goal is higher than the y axis, make it longer
         $tadjustedgoal = $adjustedgoal;
@@ -109,8 +112,7 @@ class ApexchartsWidgetEntries extends Widget
             $yaxis_max = $tadjustedgoal;
         }
 
-        $timeAgo = new TimeAgo();
-        $time_ago = $timeAgo->inWords(date_create($end));
+        $time_ago = 'some time ago';
         $this->series = [['name' => 'Words', 'data' => $data]];
         $series = json_encode($this->series);
 
