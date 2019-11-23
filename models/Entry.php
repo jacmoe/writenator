@@ -11,7 +11,7 @@ use Yii;
  * @property int $plan_id
  * @property string $date
  * @property int $amount
- * @property bool $accumulate
+ * @property bool $entered
  */
 class Entry extends \yii\db\ActiveRecord
 {
@@ -45,7 +45,7 @@ class Entry extends \yii\db\ActiveRecord
             'plan_id' => Yii::t('app', 'Plan ID'),
             'date' => Yii::t('app', 'Date'),
             'amount' => Yii::t('app', 'Amount'),
-            'accumulate' => Yii::t('app', 'Accumulate'),
+            'entered' => Yii::t('app', 'Entered'),
         ];
     }
 }
