@@ -14,7 +14,6 @@
 /** @var $height string */
 /** @var $timeout integer */
 
-$daygoal = round($goal / $day_count, 0, PHP_ROUND_HALF_UP);
 $wordsleft_today = $adjustedgoal - $today_entry;
 if ($wordsleft_today < 0) {
   $wordsleft_today = 0;
