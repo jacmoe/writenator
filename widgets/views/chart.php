@@ -14,7 +14,7 @@
 /** @var $height string */
 /** @var $timeout integer */
 
-$progress = $accumulated / $goal * 100;
+$progress = ($accumulated - $yaxis_min) / $goal * 100;
 $progress = round($progress, 0, PHP_ROUND_HALF_UP);
 $status = "";
 if($progress >= 100) {
@@ -31,7 +31,7 @@ if($completed) {
   <div class="progress">
     <div class="progress-bar bg-success" role="progressbar" style="width: <?= $progress ?>%" aria-valuenow="<?= $progress ?>" aria-valuemin="0" aria-valuemax="100"><?= $progress ?>%</div>
   </div>
-  <div><?= number_format($accumulated) ?> words written. <?= number_format($words_left) ?> words left.</div>
+  <div><?= number_format(($accumulated - $yaxis_min)) ?> words written. <?= number_format($words_left) ?> words left.</div>
 </div>
 <hr/>
 <div id="<?= json_decode($id) ?>" class="apexcharts-container">
