@@ -66,6 +66,8 @@ class PlanController extends Controller
     {
         $model = $this->findModel($id);
 
+        $model->fixPreviousEntries();
+
         return $this->render('view', [
             'plan' => $model,
         ]);

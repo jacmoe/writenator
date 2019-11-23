@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use Carbon\Carbon;
 use Carbon\CarbonPeriod;
 
 /**
@@ -78,5 +79,16 @@ class Plan extends \yii\db\ActiveRecord
         }
 
         return $period->count();
+    }
+
+    public function fixPreviousEntries()
+    {
+        foreach($this->entries as $entry) {
+            $date = Carbon::createFromFormat('Y-m-d', $entry->date);
+            if(($date->lessThan(Carbon::today())) and ($entry->entered == false)) {
+                $entry->entered = true;
+                $entry->save();
+            }
+        }
     }
 }
