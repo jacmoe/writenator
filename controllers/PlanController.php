@@ -78,11 +78,6 @@ class PlanController extends Controller
         $model = new Plan();
 
         if ($model->load(Yii::$app->request->post())) {
-            $datetime1 = date_create($_POST['start']);
-            $datetime2 = date_create($_POST['end']);
-            $interval = date_diff($datetime1, $datetime2);
-            $daycount = $interval->format('%R%a') + 1;
-            $model->daycount = $daycount;
             $model->start = $_POST['start'];
             $model->end = $_POST['end'];
             $date = date("Y-m-d", strtotime($model->start));
