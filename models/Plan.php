@@ -67,7 +67,7 @@ class Plan extends \yii\db\ActiveRecord
     {
         $period = new CarbonPeriod($this->start, $this->end);
         if($period->startsAfter()) {
-            return 'not started yet';
+            return 'notstarted';
         }
         if($period->isInProgress()) {
             return 'progressing';

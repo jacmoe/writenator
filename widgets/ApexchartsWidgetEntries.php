@@ -12,6 +12,8 @@ use Yii;
 use yii\base\InvalidConfigException;
 use yii\base\Widget;
 use Carbon\Carbon;
+use Carbon\CarbonInterface;
+
 
 class ApexchartsWidgetEntries extends Widget
 {
@@ -117,8 +119,9 @@ class ApexchartsWidgetEntries extends Widget
         $series = json_encode($this->series);
 
         $render = $this->render;
+        $status = $plan->status;
 
-        echo $this->render('entries', compact('id', 'render', 'series', 'yaxis_max', 'goal', 'day_count', 'sofar', 'adjustedgoal', 'days_left', 'time_ago', 'today_entry'));
+        echo $this->render('entries', compact('id', 'render', 'status', 'series', 'yaxis_max', 'goal', 'day_count', 'sofar', 'adjustedgoal', 'days_left', 'time_ago', 'today_entry'));
     }
 
 

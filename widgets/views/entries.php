@@ -28,9 +28,8 @@ if ($day_number < 0) {
 }
 $progress = ($day_number / $day_count) * 100;
 $progress = round($progress, 0, PHP_ROUND_HALF_UP);
-$status = "";
 if($progress >= 100) {
-  $status = "<span class='badge badge-success'>Successfully</span> completed!<hr/>";
+  $statuss = "<span class='badge badge-success'>Successfully</span> completed!<hr/>";
 }
 ?>
 <div style="padding-left: 60px; padding-right: 60px; font-size: 12px">
@@ -46,7 +45,7 @@ if($progress >= 100) {
     <widget-apexcharts :width="width" :height="height" :type="type" :chart-options="chartOptions" :series="series"></widget-apexcharts>
 </div>
 <div style="padding-left: 30px">
-    <div><?= $days_left ?> days left.<?php if($days_left <= 0) echo ' (Ended ' . $time_ago . ')'; ?></div>
+    <div><?php if($status == 'notstarted') echo 'Not started yet.'?><?php if($status == 'progressing') echo $days_left . ' days left.'?><?php if($status == 'ended') echo ' Ended ' . $time_ago; ?></div>
     <div style="font-size: 12px"><span style="background-color: #00E396">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> Target Quota for each day : <?= number_format($daygoal) ?> words.</div>
     <div style="font-size: 12px"><span style="background-color: #FEB019">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> Adjusted Target Quota based on current progress: <?= number_format($adjustedgoal) ?> words.</div>
     <div style="font-size: 12px"><span style="background-color: #008FFB">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> Average Wordcount for each day: <?= number_format($average) ?> words.</div>
