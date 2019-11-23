@@ -83,7 +83,7 @@ class PlanController extends Controller
         if ($model->load(Yii::$app->request->post())) {
             $start = Carbon::createFromFormat('Y-m-d', $model->start);
             $numdays = $_POST['numdays'] - 1;
-            $end = Carbon::createFromFormat('Y-m-d', $start->format('Y-m-d'));;
+            $end = Carbon::make($start);
             $end->addDays($numdays);
             $period = CarbonPeriod::create($start, $end);
             $model->end = $end->format('Y-m-d');
