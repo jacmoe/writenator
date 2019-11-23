@@ -117,8 +117,34 @@ class PlanController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())) {
+            $start = Carbon::createFromFormat('Y-m-d', $model->start);
+            $numdays = $_POST['numdays'] - 1;
+            $end = Carbon::make($start);
+            $end->addDays($numdays);
+            $period = CarbonPeriod::create($start, $end);
+            $model->end = $end->format('Y-m-d');
+            if($model->save()) {
+                // get rid of entries outside of period
+                foreach($model->entries as $entry) {
+                    $thedate = Carbon::createFromFormat('Y-m-d', $entry->date);
+                    if( ($period->startsAfter($thedate)) or ($period->endsBefore($thedate))) {
+                        $entry->delete();
+                    }
+                }
+                // create new entries if needed
+                foreach($period as $date) {
+                    // find existing entry or create a new one
+                    if ((Entry::find()->where(['date' => $date->format('Y-m-d'), 'plan_id' => $id])->one()) == null) {
+                        $entry = new Entry();
+                        $entry->plan_id = $model->id;
+                        $entry->date =  $date->format('Y-m-d');
+                        $entry->amount = 0;
+                        $entry->save();
+                    } 
+                }
+                return $this->redirect(['view', 'id' => $model->id]);
+             }
         }
 
         return $this->render('edit', [
