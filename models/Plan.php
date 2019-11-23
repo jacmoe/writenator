@@ -14,6 +14,7 @@ use Carbon\CarbonPeriod;
  * @property string $start
  * @property string $end
  * @property int $goal
+ * @property int $startamount
  */
 class Plan extends \yii\db\ActiveRecord
 {
@@ -34,7 +35,7 @@ class Plan extends \yii\db\ActiveRecord
         return [
             [['title', 'start', 'end', 'goal'], 'required'],
             [['start', 'end'], 'safe'],
-            [['goal', 'daycount'], 'integer'],
+            [['goal', 'daycount', 'startamount'], 'integer'],
             [['title'], 'string', 'max' => 255],
         ];
     }
@@ -51,6 +52,7 @@ class Plan extends \yii\db\ActiveRecord
             'end' => Yii::t('app', 'End'),
             'goal' => Yii::t('app', 'Goal'),
             'daycount' => Yii::t('app', 'Daycount'),
+            'startamount' => Yii::t('app', 'Starting amount'),
         ];
     }
 

@@ -65,11 +65,11 @@ class ApexchartsWidget extends Widget
         $data = array();
         $normals = array();
         $adjusted = array();
-        $daygoalnorm = round($plan->goal / $day_count, 0, PHP_ROUND_HALF_UP);
-        $normalsacc = 0;
+        $daygoalnorm = round(($plan->goal - $plan->startamount) / $day_count, 0, PHP_ROUND_HALF_UP);
+        $normalsacc = $plan->startamount;
 
         $cur_max = 0;
-        $accumulated = 0;
+        $accumulated = $plan->startamount;
         $adjusted_accumulated = 0;
         $calculate_adjusted = true;
         $adjustedgoal = 0;
@@ -93,13 +93,13 @@ class ApexchartsWidget extends Widget
                 }
                 if($calculate_adjusted) {
                     $adjusted_accumulated = $accumulated - $today_entry;
-                    if($plan->goal - $accumulated == 0) {
+                    if(($plan->goal - $plan->startamount) - $accumulated == 0) {
                         $adjustedgoal = 0;
                     } else {
                         if($days_left == 0) {
-                            $adjustedgoal = round(($plan->goal - $adjusted_accumulated), 0, PHP_ROUND_HALF_UP);
+                            $adjustedgoal = round((($plan->goal - $plan->startamount) - $adjusted_accumulated), 0, PHP_ROUND_HALF_UP);
                         } else {
-                            $adjustedgoal = round(($plan->goal - $adjusted_accumulated) / $days_left, 0, PHP_ROUND_HALF_UP);
+                            $adjustedgoal = round((($plan->goal - $plan->startamount) - $adjusted_accumulated) / $days_left, 0, PHP_ROUND_HALF_UP);
                         }
                     }
                     $calculate_adjusted = false;
@@ -117,7 +117,7 @@ class ApexchartsWidget extends Widget
         $cur_max = (($cur_max % 1000) == 0) ? $cur_max : $cur_max - ($cur_max % 1000) + 1000;
 
         // make sure that yaxis_max is a multiple of a thousand, and if not, round up to nearest thousand
-        $goal = $yaxis_max;
+        $goal = $plan->goal;
         $yaxis_max = (($yaxis_max % 1000) == 0) ? $yaxis_max : $yaxis_max - ($yaxis_max % 1000) + 1000;
 
         $yaxis_max = ($cur_max <= $yaxis_max) ? $yaxis_max : $cur_max;
@@ -129,12 +129,14 @@ class ApexchartsWidget extends Widget
         }
         $series = json_encode($this->series);
 
-        $words_left = $goal - $accumulated;
+        $words_left = ($plan->goal - $plan->startamount) - $accumulated;
         if($words_left < 0) $words_left = 0;
 
         $render = $this->render;
 
-        echo $this->render('chart', compact('id', 'series', 'yaxis_max', 'goal', 'accumulated', 'day_count', 'start', 'end', 'accumulated', 'words_left', 'completed', 'render'));
+        $yaxis_min = $plan->startamount;
+
+        echo $this->render('chart', compact('id', 'series', 'yaxis_max', 'yaxis_min', 'goal', 'accumulated', 'day_count', 'start', 'end', 'accumulated', 'words_left', 'completed', 'render'));
     }
 
 

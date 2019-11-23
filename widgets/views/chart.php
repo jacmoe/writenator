@@ -94,7 +94,7 @@ if($render) {
     xaxis: {type: 'datetime'},
     yaxis: {
       max: $yaxis_max,
-      min: 0,
+      min: $yaxis_min,
       tickAmount: 8,
       labels: {
         formatter: (value) => { return (value).toLocaleString('en') },

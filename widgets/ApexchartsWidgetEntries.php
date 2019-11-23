@@ -89,7 +89,7 @@ class ApexchartsWidgetEntries extends Widget
         // make sure that cur_max is a multiple of a thousand, and if not, round up to nearest thousand
         $cur_max = (($cur_max % 1000) == 0) ? $cur_max : $cur_max - ($cur_max % 1000) + 1000;
         
-        $daygoal = round($goal / $day_count, 0, PHP_ROUND_HALF_UP);
+        $daygoal = round(($goal - $plan->startamount) / $day_count, 0, PHP_ROUND_HALF_UP);
 
         $yaxis_max = $cur_max;
         // If the y axis is 0, then set it to two times daygoal, to nearest thousands
@@ -97,13 +97,13 @@ class ApexchartsWidgetEntries extends Widget
             $yaxis_max = ((($daygoal % 1000) == 0) ? $daygoal : $daygoal - ($daygoal % 1000) + 1000) * 2;
         }
 
-        if($goal - $sofar == 0) {
+        if(($goal - $plan->startamount) - $sofar == 0) {
             $adjustedgoal = 0;
         } else {
             if($days_left == 0) {
-                $adjustedgoal = round(($goal - ($sofar - $today_entry)), 0, PHP_ROUND_HALF_UP);
+                $adjustedgoal = round((($goal - $plan->startamount) - ($sofar - $today_entry)), 0, PHP_ROUND_HALF_UP);
             } else {
-                $adjustedgoal = round(($goal - ($sofar - $today_entry)) / $days_left, 0, PHP_ROUND_HALF_UP);
+                $adjustedgoal = round((($goal - $plan->startamount) - ($sofar - $today_entry)) / $days_left, 0, PHP_ROUND_HALF_UP);
             }
         }
         if ($adjustedgoal < 0) {
@@ -127,7 +127,9 @@ class ApexchartsWidgetEntries extends Widget
         $render = $this->render;
         $status = $plan->status;
 
-        echo $this->render('entries', compact('id', 'render', 'status', 'series', 'yaxis_max', 'goal', 'daygoal', 'day_count', 'sofar', 'adjustedgoal', 'days_left', 'time_ago', 'today_entry'));
+        $startamount = $plan->startamount;
+
+        echo $this->render('entries', compact('id', 'render', 'status', 'series', 'yaxis_max', 'goal', 'startamount', 'daygoal', 'day_count', 'sofar', 'adjustedgoal', 'days_left', 'time_ago', 'today_entry'));
     }
 
 
