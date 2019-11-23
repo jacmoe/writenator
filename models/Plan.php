@@ -85,6 +85,7 @@ class Plan extends \yii\db\ActiveRecord
     {
         foreach($this->entries as $entry) {
             $date = Carbon::createFromFormat('Y-m-d', $entry->date);
+            // if the date of the entry is prior to today and it wasn't entered, set it to entered
             if(($date->lessThan(Carbon::today())) and ($entry->entered == false)) {
                 $entry->entered = true;
                 $entry->save();
