@@ -23,7 +23,7 @@ class PlanController extends Controller
     /**
      * {@inheritdoc}
      */
-    public function behaviors()
+/*     public function behaviors()
     {
         return [
             'verbs' => [
@@ -34,7 +34,7 @@ class PlanController extends Controller
             ],
         ];
     }
-
+ */
     /**
      * Lists all Plan models.
      * @return mixed
@@ -155,7 +155,13 @@ class PlanController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $model = $this->findModel($id);
+
+        foreach($model->entries as $entry) {
+            $entry->delete();
+        }
+
+        $model->delete();
 
         return $this->redirect(['index']);
     }

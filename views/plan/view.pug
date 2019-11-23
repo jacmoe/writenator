@@ -16,3 +16,5 @@
     - if($plan->status == 'progressing') {
     != Html::a(Yii::t('app', 'Add Wordcount'), ['entry/create', 'plan_id' => $plan->id, 'index' => 0], ['class' => 'btn btn-success btn-sm'])
     - }
+    |      
+    //!= Html::a(Yii::t('app', 'Delete Plan'), ['delete', 'id' => $plan->id], ['class' => 'btn btn-danger btn-sm'])
