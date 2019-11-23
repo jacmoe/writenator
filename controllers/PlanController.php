@@ -62,14 +62,9 @@ class PlanController extends Controller
     public function actionView($id)
     {
         $model = $this->findModel($id);
-        $end_date = date_create($model->end);
-        $today_date = date_create(date("Y-m-d"));
-        $interval = date_diff($end_date, $today_date)->format('%R%a');
-        $has_ended = $interval > 0;
 
         return $this->render('view', [
             'plan' => $model,
-            'ended' => $has_ended,
         ]);
     }
 
