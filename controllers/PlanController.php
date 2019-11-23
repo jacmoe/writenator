@@ -11,6 +11,9 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\db\Query;
+use Carbon\Carbon;
+use Carbon\CarbonPeriod;
+use Carbon\CarbonInterval;
 
 /**
  * PlanController implements the CRUD actions for Plan model.
@@ -78,15 +81,17 @@ class PlanController extends Controller
         $model = new Plan();
 
         if ($model->load(Yii::$app->request->post())) {
-            $model->start = $_POST['start'];
-            $model->end = $_POST['end'];
-            $date = date("Y-m-d", strtotime($model->start));
-             if($model->save()) {
-                for ($i=0; $i < $model->daycount; $i++) { 
+            $start = Carbon::createFromFormat('Y-m-d', $model->start);
+            $numdays = $_POST['numdays'] - 1;
+            $end = Carbon::createFromFormat('Y-m-d', $start->format('Y-m-d'));;
+            $end->addDays($numdays);
+            $period = CarbonPeriod::create($start, $end);
+            $model->end = $end->format('Y-m-d');
+            if($model->save()) {
+                foreach($period as $date) {
                     $entry = new Entry();
                     $entry->plan_id = $model->id;
-                    $entry->date =  $date;
-                    $date = date("Y-m-d", strtotime($date . ' + 1 days'));
+                    $entry->date =  $date->format('Y-m-d');
                     $entry->amount = 0;
                     $entry->save();
                 }

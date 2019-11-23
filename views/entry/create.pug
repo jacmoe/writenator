@@ -10,7 +10,7 @@
             !=$form->field($model, 'plan_id')->hiddenInput(['value' => $plan_id])->label(false)
             !=$form->field($model, 'entered')->hiddenInput(['value' => true])->label(false)
             !=$form->field($model, 'amount')
-            !=$form->field($model, 'date')->widget(DatePicker::classname(), ['options' => ['value' => date("Y-m-d")],'pluginOptions' => ['autoclose'=>true,'format' => 'yyyy-m-d']])
+            !=$form->field($model, 'date')->widget(DatePicker::classname(), ['options' => ['value' => date("Y-m-d")],'pluginOptions' => ['autoclose'=>true,'format' => 'yyyy-mm-dd']])
             .form-group
                 !=Html::submitButton('Add', ['class' => 'btn btn-primary', 'name' => 'update-button'])
                 -ActiveForm::end()

@@ -16,6 +16,7 @@ use Carbon\CarbonPeriod;
  */
 class Plan extends \yii\db\ActiveRecord
 {
+    public $numdays;
     /**
      * {@inheritdoc}
      */
@@ -32,7 +33,7 @@ class Plan extends \yii\db\ActiveRecord
         return [
             [['title', 'start', 'end', 'goal'], 'required'],
             [['start', 'end'], 'safe'],
-            [['goal'], 'integer'],
+            [['goal', 'daycount'], 'integer'],
             [['title'], 'string', 'max' => 255],
         ];
     }
