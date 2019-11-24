@@ -11,6 +11,7 @@
             !=$form->field($model, 'start')->widget(DatePicker::classname(), ['options' => ['value' => date("Y-m-d")],'pluginOptions' => ['autoclose'=>true,'format' => 'yyyy-mm-dd']])
             !=Html::label('Number of days')
             !=Html::textInput('numdays')
+            !=$form->field($model, 'startamount')
             !=$form->field($model, 'goal')
             .form-group
                 !=Html::submitButton('Create', ['class' => 'btn btn-primary', 'name' => 'update-button'])
