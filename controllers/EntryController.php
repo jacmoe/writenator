@@ -71,7 +71,7 @@ class EntryController extends Controller
 
         if ($model->load(Yii::$app->request->post())) {
 
-            if (($entry = Entry::find()->where(['date' => $model->date])->one()) !== null) {
+            if (($entry = Entry::find()->where(['date' => $model->date, 'plan_id' => $plan_id])->one()) !== null) {
 
                 $entry->amount = $model->amount;
                 $entry->entered = true;
