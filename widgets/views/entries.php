@@ -19,14 +19,20 @@ if ($wordsleft_today < 0) {
   $wordsleft_today = 0;
 }
 $day_number = $day_count - $days_left;
+
 if ($day_number < 0) {
   $day_number = 0;
   $average = $sofar;
 } else {
-  $average = $sofar / $day_number;
+  if($day_number == 0) {
+    $average = $sofar;
+  } else {
+    $average = $sofar / $day_number;
+  }
 }
 $progress = ($day_number / $day_count) * 100;
 $progress = round($progress, 0, PHP_ROUND_HALF_UP);
+
 if($progress >= 100) {
   $statuss = "<span class='badge badge-success'>Successfully</span> completed!<hr/>";
 }
@@ -43,6 +49,7 @@ if($progress >= 100) {
 <div id="<?= json_decode($id) ?>" class="apexcharts-container">
     <widget-apexcharts :width="width" :height="height" :type="type" :chart-options="chartOptions" :series="series"></widget-apexcharts>
 </div>
+
 <div style="padding-left: 30px">
     <div><?php if($status == 'notstarted') echo 'Not started yet.'?><?php if($status == 'progressing') echo $days_left . ' days left.'?><?php if($status == 'ended') echo ' Ended ' . $time_ago; ?></div>
     <div style="font-size: 12px"><span style="background-color: #00E396">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> Target Quota for each day : <?= number_format($daygoal) ?> words.</div>
