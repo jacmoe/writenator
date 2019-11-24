@@ -94,16 +94,17 @@ class ApexchartsWidget extends Widget
                 if($calculate_adjusted) {
                     $adjusted_accumulated = $accumulated - $today_entry;
                     if(($plan->goal - $plan->startamount) - $accumulated == 0) {
-                        $adjustedgoal = 0;
+                        $adjustedgoal = $plan->startamount;
                     } else {
                         if($days_left == 0) {
-                            $adjustedgoal = round((($plan->goal - $plan->startamount) - $adjusted_accumulated), 0, PHP_ROUND_HALF_UP);
+                            $adjustedgoal = round(($plan->goal - $adjusted_accumulated), 0, PHP_ROUND_HALF_UP);
                         } else {
-                            $adjustedgoal = round((($plan->goal - $plan->startamount) - $adjusted_accumulated) / $days_left, 0, PHP_ROUND_HALF_UP);
+                            $adjustedgoal = round(($plan->goal - $adjusted_accumulated) / $days_left, 0, PHP_ROUND_HALF_UP);
                         }
                     }
                     $calculate_adjusted = false;
                     $adjusted_accumulated = $adjusted_accumulated + $adjustedgoal;
+                    echo $adjusted_accumulated . '  ' . $adjustedgoal;
                     $adjusted[] = [date("m/d/Y", strtotime($day_date)), $adjusted_accumulated];
                     $adjusted_accumulated = $adjusted_accumulated + $adjustedgoal;
                 } else {
