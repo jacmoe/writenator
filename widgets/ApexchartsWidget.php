@@ -104,7 +104,6 @@ class ApexchartsWidget extends Widget
                     }
                     $calculate_adjusted = false;
                     $adjusted_accumulated = $adjusted_accumulated + $adjustedgoal;
-                    echo $adjusted_accumulated . '  ' . $adjustedgoal;
                     $adjusted[] = [date("m/d/Y", strtotime($day_date)), $adjusted_accumulated];
                     $adjusted_accumulated = $adjusted_accumulated + $adjustedgoal;
                 } else {
