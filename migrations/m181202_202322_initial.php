@@ -16,6 +16,7 @@ class m181202_202322_initial extends Migration
             'start' => $this->dateTime()->notNull(),
             'end' => $this->dateTime()->notNull(),
             'goal' => $this->integer()->notNull(),
+            'startamount' => $this->integer()->notNull()->defaultValue(0),
         ]);
 
         $this->createTable('entry', [
