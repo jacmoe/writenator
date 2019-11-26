@@ -67,6 +67,10 @@ class ApexchartsWidgetEntries extends Widget
             $days_left = 0;
         }
 
+        $endamount = 60000;
+        $alldaycount = 60;
+        $globalshow = false;
+
         $data = array();
 
         $cur_max = 0;
@@ -103,7 +107,11 @@ class ApexchartsWidgetEntries extends Widget
             if($days_left == 0) {
                 $adjustedgoal = round((($goal - $plan->startamount) - ($sofar - $today_entry)), 0, PHP_ROUND_HALF_UP);
             } else {
-                $adjustedgoal = round((($goal - $plan->startamount) - ($sofar - $today_entry)) / $days_left, 0, PHP_ROUND_HALF_UP);
+                if($globalshow) {
+                    $adjustedgoal = round((($goal - $plan->startamount + $endamount) - ($sofar - $today_entry)) / ($days_left + $alldaycount), 0, PHP_ROUND_HALF_UP);
+                } else {
+                    $adjustedgoal = round((($goal - $plan->startamount) - ($sofar - $today_entry)) / $days_left, 0, PHP_ROUND_HALF_UP);
+                }
             }
         }
         if ($adjustedgoal < 0) {

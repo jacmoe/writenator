@@ -68,6 +68,10 @@ class ApexchartsWidget extends Widget
         $daygoalnorm = round(($plan->goal - $plan->startamount) / $day_count, 0, PHP_ROUND_HALF_UP);
         $normalsacc = $plan->startamount;
 
+        $endamount = 60000;
+        $alldaycount = 60;
+        $globalshow = false;
+
         $cur_max = 0;
         $accumulated = $plan->startamount;
         $adjusted_accumulated = 0;
@@ -99,7 +103,11 @@ class ApexchartsWidget extends Widget
                         if($days_left == 0) {
                             $adjustedgoal = round(($plan->goal - $adjusted_accumulated), 0, PHP_ROUND_HALF_UP);
                         } else {
-                            $adjustedgoal = round(($plan->goal - $adjusted_accumulated) / $days_left, 0, PHP_ROUND_HALF_UP);
+                            if($globalshow) {
+                                $adjustedgoal = round(($plan->goal - $adjusted_accumulated + $endamount) / ($days_left + $alldaycount), 0, PHP_ROUND_HALF_UP);
+                            } else {
+                                $adjustedgoal = round(($plan->goal - $adjusted_accumulated) / $days_left, 0, PHP_ROUND_HALF_UP);
+                            }
                         }
                     }
                     $calculate_adjusted = false;
