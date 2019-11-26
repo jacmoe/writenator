@@ -13,6 +13,9 @@
             !=Html::textInput('numdays', $model->daycount)
             !=$form->field($model, 'startamount')
             !=$form->field($model, 'goal')
+            !=$form->field($model, 'externalamount')
+            !=$form->field($model, 'externaldays')
+            !=$form->field($model, 'globalshow')->checkBox()->label('Show global goals')
             .form-group
                 !=Html::submitButton('Update', ['class' => 'btn btn-primary', 'name' => 'update-button'])
                 -ActiveForm::end()
