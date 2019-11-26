@@ -15,7 +15,8 @@ use Carbon\CarbonPeriod;
  * @property string $end
  * @property int $goal
  * @property int $startamount
- * @property int $endamount
+ * @property int $externalamount
+ * @property int $externaldays
  * @property int $globalshow
  */
 class Plan extends \yii\db\ActiveRecord
@@ -37,7 +38,7 @@ class Plan extends \yii\db\ActiveRecord
         return [
             [['title', 'start', 'end', 'goal'], 'required'],
             [['start', 'end'], 'safe'],
-            [['goal', 'daycount', 'startamount', 'endamount'], 'integer'],
+            [['goal', 'daycount', 'startamount', 'externalamount', 'externaldays'], 'integer'],
             [['title'], 'string', 'max' => 255],
         ];
     }
@@ -55,7 +56,8 @@ class Plan extends \yii\db\ActiveRecord
             'goal' => Yii::t('app', 'Goal'),
             'daycount' => Yii::t('app', 'Daycount'),
             'startamount' => Yii::t('app', 'Starting amount'),
-            'endamount' => Yii::t('app', 'Ending amount'),
+            'externalamount' => Yii::t('app', 'External amount'),
+            'externaldays' => Yii::t('app', 'External Days'),
             'globalshow' => Yii::t('app', 'Show global goal'),
         ];
     }
