@@ -137,7 +137,7 @@ class ApexchartsWidget extends Widget
         }
         $series = json_encode($this->series);
 
-        $words_left = ($plan->goal - $plan->startamount) - $accumulated;
+        $words_left = $plan->goal  - $accumulated;
         if($words_left < 0) $words_left = 0;
 
         $render = $this->render;
