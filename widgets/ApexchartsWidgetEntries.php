@@ -69,7 +69,7 @@ class ApexchartsWidgetEntries extends Widget
 
         $endamount = 60000;
         $alldaycount = 60;
-        $globalshow = false;
+        $globalshow = true;
 
         $data = array();
 

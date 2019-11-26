@@ -70,7 +70,7 @@ class ApexchartsWidget extends Widget
 
         $endamount = 60000;
         $alldaycount = 60;
-        $globalshow = false;
+        $globalshow = true;
 
         $cur_max = 0;
         $accumulated = $plan->startamount;
