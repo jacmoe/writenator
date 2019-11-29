@@ -25,16 +25,16 @@
             -if(!empty($plans)) {
                 -$data = array()
                 -foreach($plans as $plan) {
+                    -if($plan->status == 'progressing') {
                     div !=$plan->title
                     -echo app\widgets\ApexchartsWidget::widget(['plan_id' => $plan->id, 'render' => false])
                     -echo app\widgets\ApexchartsWidgetEntries::widget(['plan_id' => $plan->id, 'render' => false])
                     hr
                     != Html::a(Yii::t('app', 'View'), ['view', 'id' => $plan->id], ['class' => 'btn btn-success btn-sm'])
                     nbsp
-                    -if($plan->status == 'progressing') {
                     != Html::a(Yii::t('app', 'Add Local Wordcount'), ['entry/create', 'plan_id' => $plan->id, 'index' => 1], ['class' => 'btn btn-warning btn-sm'])
-                    -}
                     hr
+                    -}
                 -}
             -}
     .row
