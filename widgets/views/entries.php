@@ -55,7 +55,7 @@ if($progress >= 100) {
     <div style="font-size: 12px"><span style="background-color: #00E396">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> Target Quota for each day : <?= number_format($daygoal) ?> words.</div>
     <div style="font-size: 12px"><span style="background-color: #FEB019">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> Adjusted Target Quota based on current progress: <?= number_format($adjustedgoal) ?> words.</div>
     <div style="font-size: 12px"><span style="background-color: #008FFB">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> Average Wordcount for each day: <?= number_format($average) ?> words.</div>
-    <div style="font-size: 12px">Words left to write today: <?=  number_format($wordsleft_today) ?></div>
+    <div style="font-size: 12px"><?php if(!$completed) { echo 'Words left to write today: ' . number_format($wordsleft_today); } ?></div>
 </div>
 
 <?php
