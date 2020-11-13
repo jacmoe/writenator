@@ -104,8 +104,8 @@ class ApexchartsWidgetEntries extends Widget
         if(($goal - $plan->startamount) - $sofar == 0) {
             $adjustedgoal = 0;
         } else {
-            if($days_left == 0) {
-                $adjustedgoal = round((($goal - $plan->startamount) - ($sofar - $today_entry)), 0, PHP_ROUND_HALF_UP);
+            if($days_left <= 0) {
+                $adjustedgoal = $daygoal;
             } else {
                 if($globalshow) {
                     $adjustedgoal = round((($goal - $plan->startamount + $endamount) - ($sofar - $today_entry)) / ($days_left + $externaldays), 0, PHP_ROUND_HALF_UP);
@@ -137,7 +137,7 @@ class ApexchartsWidgetEntries extends Widget
 
         $startamount = $plan->startamount;
 
-        echo $this->render('entries', compact('id', 'render', 'status', 'series', 'yaxis_max', 'goal', 'startamount', 'daygoal', 'day_count', 'sofar', 'adjustedgoal', 'days_left', 'time_ago', 'today_entry'));
+        echo $this->render('entries', compact('id', 'render', 'completed', 'status', 'series', 'yaxis_max', 'goal', 'startamount', 'daygoal', 'day_count', 'sofar', 'adjustedgoal', 'days_left', 'time_ago', 'today_entry'));
     }
 
 
