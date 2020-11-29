@@ -32,6 +32,7 @@ if ($day_number < 0) {
 }
 $progress = ($day_number / $day_count) * 100;
 $progress = round($progress, 0, PHP_ROUND_HALF_UP);
+if($adjustedgoal < 1) $adjustedgoal = 1;
 
 if($progress >= 100) {
   $statuss = "<span class='badge badge-success'>Successfully</span> completed!<hr/>";
