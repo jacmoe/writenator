@@ -37,10 +37,11 @@ if($adjustedgoal < 1) $adjustedgoal = 1;
 if($progress >= 100) {
   $statuss = "<span class='badge badge-success'>Successfully</span> completed!<hr/>";
 }
+$day_number_display = ($day_number < $day_count) ? $day_number + 1 : $day_number;
 ?>
 <div style="padding-left: 60px; padding-right: 60px; font-size: 12px">
 <hr/>
-    <div>Day <?= $day_number + 1?> out of <?= $day_count ?>.</div>
+    <div>Day <?= $day_number_display?> out of <?= $day_count ?>.</div>
       <div class="progress">
     <div class="progress-bar bg-warning" role="progressbar" style="width: <?= $progress ?>%" aria-valuenow="<?= $progress ?>" aria-valuemin="0" aria-valuemax="100"><?= $progress ?>%</div>
   </div>
