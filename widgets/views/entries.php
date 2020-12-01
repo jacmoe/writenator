@@ -19,7 +19,6 @@ if ($wordsleft_today < 0) {
   $wordsleft_today = 0;
 }
 $day_number = $day_count - $days_left;
-
 if ($day_number < 0) {
   $day_number = 0;
   $average = $sofar;
@@ -37,7 +36,7 @@ if($adjustedgoal < 1) $adjustedgoal = 1;
 if($progress >= 100) {
   $statuss = "<span class='badge badge-success'>Successfully</span> completed!<hr/>";
 }
-$day_number_display = ($day_number < $day_count) ? $day_number + 1 : $day_number;
+$day_number_display = ($day_number < $day_count) ? $day_number + 0 : $day_number;
 ?>
 <div style="padding-left: 60px; padding-right: 60px; font-size: 12px">
 <hr/>

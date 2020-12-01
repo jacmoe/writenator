@@ -59,10 +59,10 @@ class ApexchartsWidgetEntries extends Widget
         $datetime1 = date_create();
         $datetime2 = date_create($end);
         $interval = date_diff($datetime1, $datetime2);
-        $days_left = $interval->format('%R%a') + 2;
+        $days_left = $interval->format('%R%a') + 1;
 
         $completed = false;
-        if($days_left <= 0) {
+        if($days_left < 0) {
             $completed = true;
             $days_left = 0;
         }
@@ -120,6 +120,7 @@ class ApexchartsWidgetEntries extends Widget
         if($days_left > $day_count) {
             $adjustedgoal = 0;
         }
+        if (($day_count - $days_left)== 1) $adjustedgoal = $daygoal;
 
         // If adjusted goal is higher than the y axis, make it longer
         $tadjustedgoal = $adjustedgoal;

@@ -58,7 +58,7 @@ class ApexchartsWidget extends Widget
         $days_left = $interval->format('%R%a') + 2;
 
         $completed = false;
-        if($days_left <= 0) {
+        if($days_left < 0) {
             $completed = true;
         }
 

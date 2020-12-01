@@ -75,7 +75,9 @@ class Plan extends \yii\db\ActiveRecord
 
     public function getStatus()
     {
-        $period = new CarbonPeriod($this->start, $this->end);
+        $end = Carbon::make($this->end);
+        $end->addDays(1);
+        $period = new CarbonPeriod($this->start, $end);
         if($period->startsAfter()) {
             return 'notstarted';
         }
