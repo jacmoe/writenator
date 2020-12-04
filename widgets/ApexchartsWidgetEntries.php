@@ -108,9 +108,9 @@ class ApexchartsWidgetEntries extends Widget
                 $adjustedgoal = $daygoal;
             } else {
                 if($globalshow) {
-                    $adjustedgoal = round((($goal - $plan->startamount + $endamount) - ($sofar - $today_entry)) / ($days_left + $externaldays), 0, PHP_ROUND_HALF_UP);
+                    $adjustedgoal = round((($goal - $plan->startamount + $endamount) - ($sofar - $today_entry)) / (($days_left + 1) + $externaldays), 0, PHP_ROUND_HALF_UP);
                 } else {
-                    $adjustedgoal = round((($goal - $plan->startamount) - ($sofar - $today_entry)) / $days_left, 0, PHP_ROUND_HALF_UP);
+                    $adjustedgoal = round((($goal - $plan->startamount) - ($sofar - $today_entry)) / ($days_left + 1), 0, PHP_ROUND_HALF_UP);
                 }
             }
         }
