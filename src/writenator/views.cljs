@@ -31,7 +31,7 @@
   (let [name (re-frame/subscribe [::subs/name])]
     [re-com/title
      :src   (at)
-     :label (str "Hello from " @name ". This is the Home Page." )
+     :label (str "Hello from " @name ". This is the Changed Home Page.")
      :level :level1
      :class (styles/level1)]))
 
