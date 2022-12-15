@@ -1,5 +1,15 @@
-zig-cache/
-zig-out/
+/out/
+/resources/public/js/compiled/
+/target/
+/*-init.clj
+/*.log
 
-.zigmod
-deps.zig
+# Leiningen
+/.lein-*
+/.nrepl-port
+
+# Node.js dependencies
+/node_modules/
+
+# shadow-cljs cache, port files
+/.shadow-cljs/
