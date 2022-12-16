@@ -19,8 +19,7 @@
      :class (styles/level1)]))
 
 (defn link-to-about-page []
-  [re-com/hyperlink
-   :src      (at)
+  [re-com/button
    :label    "go to About Page"
    :on-click #(re-frame/dispatch [::events/navigate :about])])
 
@@ -43,15 +42,14 @@
    :level :level1])
 
 (defn link-to-home-page []
-  [re-com/hyperlink
-   :src      (at)
+  [re-com/button
    :label    "go to Home Page"
    :on-click #(re-frame/dispatch [::events/navigate :home])])
 
 (defn about-panel []
   [re-com/v-box
    :src      (at)
-   :gap      "1em"
+   :gap      "2em"
    :children [[about-title]
               [link-to-home-page]]])
 
