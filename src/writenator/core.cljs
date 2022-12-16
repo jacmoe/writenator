@@ -7,8 +7,8 @@
    [writenator.events :as events]
    [writenator.routes :as routes]
    [writenator.views :as views]
-   [writenator.config :as config]
-   ))
+   [writenator.config :as config]))
+   
 
 
 (defn dev-setup []
@@ -24,7 +24,6 @@
 (defn init []
   (routes/start!)
   (re-frame/dispatch-sync [::events/initialize-db])
-  (re-frame/dispatch-sync [::rp/add-keyboard-event-listener "keydown"])
   (re-frame/dispatch-sync [::bp/set-breakpoints
                            {:breakpoints [:mobile
                                           768

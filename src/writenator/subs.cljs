@@ -12,7 +12,3 @@
  (fn [db _]
    (:active-panel db)))
 
-(re-frame/reg-sub
- ::re-pressed-example
- (fn [db _]
-   (:re-pressed-example db)))

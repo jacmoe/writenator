@@ -8,30 +8,13 @@
    [writenator.routes :as routes]
    [writenator.subs :as subs]))
 
-
-
 ;; home
-
-(defn display-re-pressed-example []
-  (let [re-pressed-example (re-frame/subscribe [::subs/re-pressed-example])]
-    [:div
-
-     [:p
-      [:span "Re-pressed is listening for keydown events. A message will be displayed when you type "]
-      [:strong [:code "hello"]]
-      [:span ". So go ahead, try it out!"]]
-
-     (when-let [rpe @re-pressed-example]
-       [re-com/alert-box
-        :src        (at)
-        :alert-type :info
-        :body       rpe])]))
 
 (defn home-title []
   (let [name (re-frame/subscribe [::subs/name])]
     [re-com/title
      :src   (at)
-     :label (str "Hello from " @name ". This is the Changed Home Page.")
+     :label (str "Hello from " @name ". This is the Home Page.")
      :level :level1
      :class (styles/level1)]))
 
@@ -46,11 +29,7 @@
    :src      (at)
    :gap      "1em"
    :children [[home-title]
-              [link-to-about-page]
-              [display-re-pressed-example]
-              [:div
-               [:h3 (str "screen-width: " @(re-frame/subscribe [::bp/screen-width]))]
-               [:h3 (str "screen: " @(re-frame/subscribe [::bp/screen]))]]]])
+              [link-to-about-page]]])
 
 
 (defmethod routes/panels :home-panel [] [home-panel])
