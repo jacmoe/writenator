@@ -12,7 +12,9 @@
     ;; Routes
     [jacmoe.writenator.web.routes.api]
     
-    [jacmoe.writenator.web.routes.pages])
+    [jacmoe.writenator.web.routes.pages] 
+    [kit.edge.db.sql.conman] 
+    [kit.edge.db.sql.migratus])
   (:gen-class))
 
 ;; log uncaught exceptions in threads

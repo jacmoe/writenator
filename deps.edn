@@ -23,7 +23,10 @@
  io.github.kit-clj/kit-core {:mvn/version "1.0.3"}
  io.github.kit-clj/kit-undertow {:mvn/version "1.0.4"}
  selmer/selmer {:mvn/version "1.12.50"}
- luminus/ring-ttl-session {:mvn/version "0.3.3"}}
+ luminus/ring-ttl-session {:mvn/version "0.3.3"}
+ io.github.kit-clj/kit-sql-conman {:mvn/version "1.0.5"}
+ io.github.kit-clj/kit-sql-migratus {:mvn/version "1.0.2"}
+ org.xerial/sqlite-jdbc {:mvn/version "3.36.0.3"}}
  :aliases {:build {:deps {io.github.clojure/tools.build {:git/sha "e3e3532"
                                                          :git/tag "v0.8.0" :git/url "https://github.com/clojure/tools.build.git"}}
                    :ns-default build}

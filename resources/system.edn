@@ -36,7 +36,8 @@
 
  :reitit.routes/api
  {:base-path "/api"
-  :env #ig/ref :system/env}
+  :env #ig/ref :system/env
+  :query-fn #ig/ref :db.sql/query-fn}
 
  :router/routes
  {:routes #ig/refset :reitit/routes}
@@ -44,4 +45,13 @@
  :router/core
  {:routes #ig/ref :router/routes}
  :reitit.routes/pages {:base-path "",
-                       :env #ig/ref :system/env}}
+                       :env #ig/ref :system/env}
+ :db.sql/query-fn {:conn #ig/ref :db.sql/connection,
+                   :options {},
+                   :filename "sql/queries.sql"}
+ :db.sql/migrations {:store :database,
+                     :db {:datasource #ig/ref :db.sql/connection},
+                     :migrate-on-init? true}
+ :db.sql/connection #profile {:dev {:jdbc-url "jdbc:sqlite:writenator_dev.db"},
+                              :test {:jdbc-url "jdbc:sqlite:writenator_test.db"},
+                              :prod {:jdbc-url #env JDBC_URL}}}
