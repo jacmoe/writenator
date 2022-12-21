@@ -11,7 +11,8 @@
 
     ;; Routes
     [jacmoe.writenator.web.routes.api]
-    )
+    
+    [jacmoe.writenator.web.routes.pages])
   (:gen-class))
 
 ;; log uncaught exceptions in threads
