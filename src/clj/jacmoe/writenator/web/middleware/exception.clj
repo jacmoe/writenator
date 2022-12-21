@@ -1,4 +1,4 @@
-(ns moena.guestbook.web.middleware.exception
+(ns jacmoe.writenator.web.middleware.exception
   (:require
     [clojure.tools.logging :as log]
     [reitit.ring.middleware.exception :as exception]))

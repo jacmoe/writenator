@@ -1,6 +1,6 @@
-(ns moena.guestbook.test-utils
+(ns jacmoe.writenator.test-utils
   (:require
-    [moena.guestbook.core :as core]
+    [jacmoe.writenator.core :as core]
     [integrant.repl.state :as state]))
 
 (defn system-state 

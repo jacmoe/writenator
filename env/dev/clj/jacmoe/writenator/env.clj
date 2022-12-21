@@ -1,7 +1,7 @@
-(ns moena.guestbook.env
+(ns jacmoe.writenator.env
   (:require
     [clojure.tools.logging :as log]
-    [moena.guestbook.dev-middleware :refer [wrap-dev]]))
+    [jacmoe.writenator.dev-middleware :refer [wrap-dev]]))
 
 (def defaults
   {:init       (fn []

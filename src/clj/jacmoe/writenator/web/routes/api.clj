@@ -1,8 +1,8 @@
-(ns moena.guestbook.web.routes.api
+(ns jacmoe.writenator.web.routes.api
   (:require
-    [moena.guestbook.web.controllers.health :as health]
-    [moena.guestbook.web.middleware.exception :as exception]
-    [moena.guestbook.web.middleware.formats :as formats]
+    [jacmoe.writenator.web.controllers.health :as health]
+    [jacmoe.writenator.web.middleware.exception :as exception]
+    [jacmoe.writenator.web.middleware.formats :as formats]
     [integrant.core :as ig]
     [reitit.coercion.malli :as malli]
     [reitit.ring.coercion :as coercion]
@@ -14,7 +14,7 @@
 (defn api-routes [_opts]
   [["/swagger.json"
     {:get {:no-doc  true
-           :swagger {:info {:title "moena.guestbook API"}}
+           :swagger {:info {:title "jacmoe.writenator API"}}
            :handler (swagger/create-swagger-handler)}}]
    ["/health"
     {:get health/healthcheck!}]])

@@ -1,4 +1,4 @@
-(ns moena.guestbook.config
+(ns jacmoe.writenator.config
   (:require
     [kit.config :as config]))
 

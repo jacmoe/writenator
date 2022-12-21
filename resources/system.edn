@@ -15,7 +15,7 @@
  :handler/ring
  {:router                #ig/ref :router/core 
   :api-path              "/api"
-  :cookie-secret         #or [#env COOKIE_SECRET "OACGXBAEVIBGZECD"]
+  :cookie-secret         #or [#env COOKIE_SECRET "QBVFUVDHHBFLHVXV"]
   ;; from ring.middleware.defaults. anti-forgery `false` by default because services may not require it
   :site-defaults-config  {:params    {:urlencoded true
                                       :multipart  true
@@ -23,7 +23,7 @@
                                       :keywordize true}
                           :cookies   true
                           :session   {:flash true
-                                      :cookie-name "moena.guestbook"
+                                      :cookie-name "jacmoe.writenator"
                                       :cookie-attrs {:max-age     86400
                                                      :http-only   true
                                                      :same-site   :strict}}

@@ -1,4 +1,4 @@
-(ns moena.guestbook.env
+(ns jacmoe.writenator.env
   (:require [clojure.tools.logging :as log]))
 
 (def defaults

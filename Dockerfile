@@ -8,8 +8,8 @@ RUN clj -Sforce -T:build all
 
 FROM azul/zulu-openjdk-alpine:17
 
-COPY --from=build /target/guestbook-standalone.jar /guestbook/guestbook-standalone.jar
+COPY --from=build /target/writenator-standalone.jar /writenator/writenator-standalone.jar
 
 EXPOSE $PORT
 
-ENTRYPOINT exec java $JAVA_OPTS -jar /guestbook/guestbook-standalone.jar
+ENTRYPOINT exec java $JAVA_OPTS -jar /writenator/writenator-standalone.jar

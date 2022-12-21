@@ -1,4 +1,4 @@
-(ns moena.guestbook.web.routes.utils)
+(ns jacmoe.writenator.web.routes.utils)
 
 (def route-data-path [:reitit.core/match :data])
 

@@ -1,6 +1,6 @@
-(ns moena.guestbook.web.middleware.core
+(ns jacmoe.writenator.web.middleware.core
   (:require
-    [moena.guestbook.env :as env]
+    [jacmoe.writenator.env :as env]
     [ring.middleware.defaults :as defaults]
     [ring.middleware.session.cookie :as cookie]))
 

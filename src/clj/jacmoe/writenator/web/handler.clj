@@ -1,6 +1,6 @@
-(ns moena.guestbook.web.handler
+(ns jacmoe.writenator.web.handler
   (:require
-    [moena.guestbook.web.middleware.core :as middleware]
+    [jacmoe.writenator.web.middleware.core :as middleware]
     [integrant.core :as ig]
     [ring.util.http-response :as http-response]
     [reitit.ring :as ring]

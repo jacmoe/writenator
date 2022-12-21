@@ -1,6 +1,6 @@
-(ns moena.guestbook.core-test
+(ns jacmoe.writenator.core-test
   (:require
-    [moena.guestbook.test-utils :as utils]
+    [jacmoe.writenator.test-utils :as utils]
     [clojure.test :refer :all]))
 
 (deftest example-test

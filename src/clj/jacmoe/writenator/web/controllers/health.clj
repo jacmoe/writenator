@@ -1,4 +1,4 @@
-(ns moena.guestbook.web.controllers.health
+(ns jacmoe.writenator.web.controllers.health
   (:require
     [ring.util.http-response :as http-response])
   (:import

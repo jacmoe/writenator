@@ -1,16 +1,16 @@
-(ns moena.guestbook.core
+(ns jacmoe.writenator.core
   (:require
     [clojure.tools.logging :as log]
     [integrant.core :as ig]
-    [moena.guestbook.config :as config]
-    [moena.guestbook.env :refer [defaults]]
+    [jacmoe.writenator.config :as config]
+    [jacmoe.writenator.env :refer [defaults]]
 
     ;; Edges       
     [kit.edge.server.undertow]
-    [moena.guestbook.web.handler]
+    [jacmoe.writenator.web.handler]
 
     ;; Routes
-    [moena.guestbook.web.routes.api]
+    [jacmoe.writenator.web.routes.api]
     )
   (:gen-class))
 
